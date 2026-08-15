@@ -11,31 +11,31 @@
   "name": "Header",
   "type": "header",
   "sections": {
-    "header_ciejVA": {
+    "header_QXDFMm": {
       "type": "header",
       "blocks": {
-        "category_pill_Qpnd6c": {
+        "category_pill_dKAmLJ": {
           "type": "category_pill",
           "settings": {
             "title": "فالكون",
             "url": ""
           }
         },
-        "category_pill_7DaJKe": {
+        "category_pill_9YArck": {
           "type": "category_pill",
           "settings": {
             "title": "هولك",
             "url": ""
           }
         },
-        "category_pill_HYbWdy": {
+        "category_pill_fEBrfb": {
           "type": "category_pill",
           "settings": {
             "title": "سمارترز برو",
             "url": ""
           }
         },
-        "category_pill_6UfXH8": {
+        "category_pill_d9Rr9B": {
           "type": "category_pill",
           "settings": {
             "title": "عروض سنوية",
@@ -44,20 +44,19 @@
         }
       },
       "block_order": [
-        "category_pill_Qpnd6c",
-        "category_pill_7DaJKe",
-        "category_pill_HYbWdy",
-        "category_pill_6UfXH8"
+        "category_pill_dKAmLJ",
+        "category_pill_9YArck",
+        "category_pill_fEBrfb",
+        "category_pill_d9Rr9B"
       ],
       "name": "Header",
       "settings": {
-        "shahidstore_logo": "shopify://shop_images/logo.webp",
         "primary_color": "#e0ac00",
         "pages_menu": "main-menu"
       }
     }
   },
   "order": [
-    "header_ciejVA"
+    "header_QXDFMm"
   ]
 }
