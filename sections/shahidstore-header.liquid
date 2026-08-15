@@ -1,0 +1,135 @@
+{{ 'shahidstore-header.css' | asset_url | stylesheet_tag }}
+
+<header class="shahidstore-header-wrapper" style="--shahidstore-gold: {{ section.settings.primary_color }};">
+  
+  {%- comment -%} Desktop Layout {%- endcomment -%}
+  <div class="shahidstore-desktop-header">
+    <div class="shahidstore-top-bar">
+      <div class="shahidstore-auth-buttons">
+        <a href="{{ routes.account_register_url }}" class="shahidstore-btn-register">حساب جديد +</a>
+        <a href="{{ routes.account_login_url }}" class="shahidstore-btn-login">تسجيل الدخول &rarr;</a>
+      </div>
+
+      <ul class="shahidstore-pages-menu">
+        {% for link in section.settings.pages_menu.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+
+      <div class="shahidstore-logo">
+        <a href="{{ routes.root_url }}">
+          {% if section.settings.shahidstore_logo %}
+            <img src="{{ section.settings.shahidstore_logo | image_url: width: 200 }}" alt="{{ shop.name }}" loading="lazy">
+          {% else %}
+            <h2>{{ shop.name }}</h2>
+          {% endif %}
+        </a>
+      </div>
+    </div>
+
+    <div class="shahidstore-categories-pills">
+      {% for block in section.blocks %}
+        {% if block.type == 'category_pill' %}
+          <a href="{{ block.settings.url }}" class="shahidstore-pill-item" {{ block.shopify_attributes }}>
+            {% if block.settings.icon %}
+              <img src="{{ block.settings.icon | image_url: width: 50 }}" alt="{{ block.settings.title }}" loading="lazy">
+            {% endif %}
+            <span>{{ block.settings.title }}</span>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  {%- comment -%} Mobile Layout {%- endcomment -%}
+  <div class="shahidstore-mobile-header">
+    <div class="shahidstore-mobile-top">
+      <button class="shahidstore-menu-toggle" onclick="document.getElementById('shahidstore-drawer').classList.toggle('is-active')">&#9776;</button>
+      
+      <div class="shahidstore-logo">
+        <a href="{{ routes.root_url }}">
+          {% if section.settings.shahidstore_logo %}
+            <img src="{{ section.settings.shahidstore_logo | image_url: width: 140 }}" alt="{{ shop.name }}" loading="lazy">
+          {% else %}
+            <h3>{{ shop.name }}</h3>
+          {% endif %}
+        </a>
+      </div>
+    </div>
+
+    <div class="shahidstore-categories-pills">
+      {% for block in section.blocks %}
+        {% if block.type == 'category_pill' %}
+          <a href="{{ block.settings.url }}" class="shahidstore-pill-item">
+            {% if block.settings.icon %}
+              <img src="{{ block.settings.icon | image_url: width: 40 }}" alt="{{ block.settings.title }}" loading="lazy">
+            {% endif %}
+            <span>{{ block.settings.title }}</span>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  {% render 'shahidstore-drawer' %}
+</header>
+
+{% schema %}
+{
+  "name": "ShahidStore Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "shahidstore_logo",
+      "label": "شعار المتجر"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "اللون الرئيسي (الذهبي)",
+      "default": "#e0ac00"
+    },
+    {
+      "type": "link_list",
+      "id": "pages_menu",
+      "label": "قائمة الصفحات (من نحن، التقييمات...)",
+      "default": "main-menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_pill",
+      "name": "تصنيف / عرض",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "اسم التصنيف",
+          "default": "فالكون"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "أيقونة التصنيف"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "رابط التصنيف"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ShahidStore Header",
+      "blocks": [
+        { "type": "category_pill", "settings": { "title": "فالكون" } },
+        { "type": "category_pill", "settings": { "title": "هولك" } },
+        { "type": "category_pill", "settings": { "title": "سمارترز برو" } },
+        { "type": "category_pill", "settings": { "title": "عروض سنوية" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

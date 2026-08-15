@@ -1,0 +1,161 @@
+:root {
+    --shahidstore-bg-dark: #222222;
+    --shahidstore-card-bg: #1a1a1a;
+    --shahidstore-gold: #e0ac00;
+    --shahidstore-text: #ffffff;
+    --shahidstore-border-radius: 25px;
+}
+
+.shahidstore-header-wrapper {
+    background-color: var(--shahidstore-bg-dark);
+    color: var(--shahidstore-text);
+    direction: rtl;
+    font-family: inherit;
+    padding: 10px 20px;
+}
+
+.shahidstore-desktop-header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.shahidstore-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shahidstore-logo img {
+    max-height: 60px;
+    object-fit: contain;
+}
+
+.shahidstore-pages-menu {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.shahidstore-pages-menu a {
+    color: var(--shahidstore-text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.shahidstore-auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.shahidstore-btn-login {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: var(--shahidstore-border-radius);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.shahidstore-btn-register {
+    background-color: var(--shahidstore-gold);
+    color: #000;
+    padding: 8px 18px;
+    border-radius: var(--shahidstore-border-radius);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.shahidstore-categories-pills {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.shahidstore-pill-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--shahidstore-gold);
+    border-radius: var(--shahidstore-border-radius);
+    padding: 6px 16px;
+    text-decoration: none;
+    color: var(--shahidstore-text);
+    white-space: nowrap;
+}
+
+.shahidstore-pill-item img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* Mobile Styling */
+.shahidstore-mobile-header {
+    display: none;
+}
+
+@media (max-width: 989px) {
+    .shahidstore-desktop-header {
+        display: none;
+    }
+
+    .shahidstore-mobile-header {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .shahidstore-mobile-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .shahidstore-menu-toggle {
+        background: none;
+        border: 1px solid var(--shahidstore-gold);
+        color: #fff;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+    }
+}
+
+/* Mobile Drawer */
+.shahidstore-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100%;
+    background: #252525;
+    z-index: 9999;
+    transition: 0.3s ease;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.shahidstore-drawer.is-active {
+    right: 0;
+}
+
+.shahidstore-drawer-section {
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
+
+.shahidstore-drawer-title {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    margin-bottom: 10px;
+}
