@@ -6,5 +6,42 @@
     "theme_author": "ShahidStore",
     "theme_documentation_url": "https://shahidstore.com",
     "theme_support_url": "https://shahidstore.com"
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "select",
+        "id": "heading_font_family",
+        "label": "Heading Font (خط العناوين)",
+        "default": "Cairo",
+        "options": [
+          { "value": "Cairo", "label": "Cairo (القاهرة)" },
+          { "value": "Tajawal", "label": "Tajawal (تجوال)" },
+          { "value": "Almarai", "label": "Almarai (المراعي)" }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "body_font_family",
+        "label": "Body Font (خط النصوص والفقرات)",
+        "default": "Tajawal",
+        "options": [
+          { "value": "Cairo", "label": "Cairo (القاهرة)" },
+          { "value": "Tajawal", "label": "Tajawal (تجوال)" },
+          { "value": "Almarai", "label": "Almarai (المراعي)" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image (أيقونة الموقع)"
+      }
+    ]
   }
 ]

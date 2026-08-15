@@ -1,4 +1,71 @@
-/* Accessibility & Utility Classes */
+/* ==========================================================================
+   ShahidStore Typography: Self-hosted Arabic Google Fonts (Cairo, Tajawal, Almarai)
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('cairo-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('cairo-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('tajawal-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  src: url('tajawal-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Almarai';
+  src: url('almarai-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Almarai';
+  src: url('almarai-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   CSS Custom Properties & Design System
+   ========================================================================== */
+:root {
+  /* Default typography fallbacks - these will be overridden dynamically by theme.liquid */
+  --font-heading-family: 'Cairo', system-ui, sans-serif;
+  --font-body-family: 'Tajawal', system-ui, sans-serif;
+  
+  --shahidstore-bg-dark: #121212;
+  --shahidstore-text-light: #ffffff;
+  --shahidstore-gold: #e0ac00;
+}
+
+/* ==========================================================================
+   Accessibility & Utility Classes
+   ========================================================================== */
 .visually-hidden {
   position: absolute !important;
   overflow: hidden;
@@ -17,21 +84,64 @@
   width: auto;
   height: auto;
   clip: auto;
-  background-color: var(--shahidstore-gold, #e0ac00);
+  background-color: var(--shahidstore-gold);
   color: #000;
   padding: 10px 15px;
   font-weight: bold;
   text-decoration: none;
   top: 10px;
-  right: 10px;
   border-radius: 4px;
 }
 
-/* Global Reset & Basic Theme Rules */
+[dir="rtl"] .skip-to-content-link:focus {
+  right: 10px;
+  left: auto;
+}
+
+[dir="ltr"] .skip-to-content-link:focus {
+  left: 10px;
+  right: auto;
+}
+
+/* ==========================================================================
+   Global Reset & Base Typography Application
+   ========================================================================== */
 body.shahidstore-template {
   margin: 0;
   padding: 0;
-  background-color: #121212;
-  color: #ffffff;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--shahidstore-bg-dark);
+  color: var(--shahidstore-text-light);
+  font-family: var(--font-body-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6,
+.shahidstore-shop-name {
+  font-family: var(--font-heading-family);
+  font-weight: 700;
+}
+
+button, input, select, textarea, 
+.shahidstore-btn-login, .shahidstore-btn-register, .shahidstore-pill-item {
+  font-family: var(--font-body-family);
+}
+
+/* ==========================================================================
+   RTL/LTR Adaptive Styles for Components
+   ========================================================================== */
+
+/* LTR Specific Adjustments for Header/Navigation */
+[dir="ltr"] .shahidstore-header-wrapper {
+  direction: ltr;
+}
+
+[dir="ltr"] .shahidstore-drawer {
+  left: -100%;
+  right: auto;
+}
+
+[dir="ltr"] .shahidstore-drawer.is-active {
+  left: 0;
+  right: auto;
 }
