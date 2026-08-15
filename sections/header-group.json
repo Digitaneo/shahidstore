@@ -1,13 +1,62 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "Header",
   "type": "header",
   "sections": {
-    "header": {
+    "header_QbPD3U": {
       "type": "header",
-      "settings": {}
+      "blocks": {
+        "category_pill_XFcxBx": {
+          "type": "category_pill",
+          "settings": {
+            "title": "فالكون",
+            "url": ""
+          }
+        },
+        "category_pill_ECmYDU": {
+          "type": "category_pill",
+          "settings": {
+            "title": "هولك",
+            "url": ""
+          }
+        },
+        "category_pill_868tRj": {
+          "type": "category_pill",
+          "settings": {
+            "title": "سمارترز برو",
+            "url": ""
+          }
+        },
+        "category_pill_KXDKwx": {
+          "type": "category_pill",
+          "settings": {
+            "title": "عروض سنوية",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_pill_XFcxBx",
+        "category_pill_ECmYDU",
+        "category_pill_868tRj",
+        "category_pill_KXDKwx"
+      ],
+      "name": "Header",
+      "settings": {
+        "primary_color": "#e0ac00",
+        "pages_menu": "main-menu"
+      }
     }
   },
   "order": [
-    "header"
+    "header_QbPD3U"
   ]
 }
