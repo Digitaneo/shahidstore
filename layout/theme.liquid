@@ -2,10 +2,35 @@
 <html class="no-js" lang="{{ request.locale.iso_code }}" dir="{% if request.locale.iso_code == 'ar' or request.locale.iso_code == 'fa' or request.locale.iso_code == 'he' %}rtl{% else %}ltr{% endif %}">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{{ page_title }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#e0ac00">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- comment -%} SEO Preconnects & Performance {%- endcomment -%}
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
+      {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {%- assign seo_description = page_description | default: shop.description -%}
+    {% if seo_description != blank %}
+      <meta name="description" content="{{ seo_description | escape }}">
+    {% endif %}
+
+    {% render 'meta-tags' %}
+
     {{ content_for_header }}
+
+    {%- comment -%} Theme Stylesheets {%- endcomment -%}
     {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ 'shahidstore-header.css' | asset_url | stylesheet_tag }}
+
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
   </head>
 
   <body class="shahidstore-template template-{{ template | handle }}">
@@ -21,6 +46,8 @@
 
     {% section 'footer' %}
 
-    {{ 'theme.js' | asset_url | script_tag }}
+    <ul hidden>
+      <li id="a11y-refresh-page-message">تغيير التحديد يعيد تحميل الصفحة.</li>
+    </ul>
   </body>
 </html>
