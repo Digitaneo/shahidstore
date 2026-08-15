@@ -1,5 +1,9 @@
 {
   "general": {
+    "skip_to_content": "Skip to content",
+    "accessibility": {
+      "refresh_page": "Choosing a selection results in a full page refresh."
+    },
     "meta": {
       "tags": "Tagged \"{{ tags }}\"",
       "page": "Page {{ page }}"
