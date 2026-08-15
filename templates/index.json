@@ -8,6 +8,13 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {},
-  "order": []
+    "sections": {
+        "main": {
+            "type": "shahidstore-header",
+            "settings": {}
+        }
+    },
+    "order": [
+        "main"
+    ]
 }
