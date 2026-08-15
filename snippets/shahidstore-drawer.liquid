@@ -1,7 +1,7 @@
-<div id="shahidstore-drawer" class="shahidstore-drawer">
+<nav id="shahidstore-drawer" class="shahidstore-drawer" aria-label="القائمة الجانبية">
   <div class="shahidstore-logo" style="text-align: center; margin-bottom: 20px;">
     {% if section.settings.shahidstore_logo %}
-      <img src="{{ section.settings.shahidstore_logo | image_url: width: 150 }}" alt="{{ shop.name }}" loading="lazy">
+      <img src="{{ section.settings.shahidstore_logo | image_url: width: 150 }}" alt="{{ shop.name | escape }}" loading="lazy" width="150" height="50">
     {% endif %}
   </div>
 
@@ -11,9 +11,9 @@
       {% if block.type == 'category_pill' %}
         <a href="{{ block.settings.url }}" class="shahidstore-pill-item" style="margin-bottom: 8px;">
           {% if block.settings.icon %}
-            <img src="{{ block.settings.icon | image_url: width: 40 }}" alt="{{ block.settings.title }}" loading="lazy">
+            <img src="{{ block.settings.icon | image_url: width: 40 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="24" height="24">
           {% endif %}
-          <span>{{ block.settings.title }}</span>
+          <span>{{ block.settings.title | escape }}</span>
         </a>
       {% endif %}
     {% endfor %}
@@ -21,7 +21,7 @@
 
   <div class="shahidstore-drawer-section">
     {% for link in section.settings.pages_menu.links %}
-      <a href="{{ link.url }}" style="display: block; color: #fff; text-decoration: none; padding: 8px 0;">{{ link.title }}</a>
+      <a href="{{ link.url }}" style="display: block; color: #fff; text-decoration: none; padding: 8px 0;">{{ link.title | escape }}</a>
     {% endfor %}
   </div>
 
@@ -30,4 +30,4 @@
     <a href="{{ routes.account_login_url }}" style="display: block; color: #fff; text-decoration: none; padding: 5px 0;">تسجيل الدخول</a>
     <a href="{{ routes.account_register_url }}" style="display: block; color: #fff; text-decoration: none; padding: 5px 0;">إنشاء حساب جديد</a>
   </div>
-</div>
+</nav>

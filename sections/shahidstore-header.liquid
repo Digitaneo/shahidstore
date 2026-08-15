@@ -10,65 +10,91 @@
         <a href="{{ routes.account_login_url }}" class="shahidstore-btn-login">تسجيل الدخول &rarr;</a>
       </div>
 
-      <ul class="shahidstore-pages-menu">
-        {% for link in section.settings.pages_menu.links %}
-          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-        {% endfor %}
-      </ul>
+      <nav class="shahidstore-pages-nav" aria-label="قائمة الصفحات">
+        <ul class="shahidstore-pages-menu">
+          {% for link in section.settings.pages_menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
 
       <div class="shahidstore-logo">
-        <a href="{{ routes.root_url }}">
-          {% if section.settings.shahidstore_logo %}
-            <img src="{{ section.settings.shahidstore_logo | image_url: width: 200 }}" alt="{{ shop.name }}" loading="lazy">
-          {% else %}
-            <h2>{{ shop.name }}</h2>
-          {% endif %}
-        </a>
+        {% if request.page_type == 'index' %}
+          <h1 class="shahidstore-logo-heading">
+        {% else %}
+          <div class="shahidstore-logo-wrapper">
+        {% endif %}
+          <a href="{{ routes.root_url }}">
+            {% if section.settings.shahidstore_logo %}
+              <img src="{{ section.settings.shahidstore_logo | image_url: width: 200 }}" alt="{{ shop.name | escape }}" loading="eager" fetchpriority="high">
+            {% else %}
+              <span class="shahidstore-shop-name">{{ shop.name | escape }}</span>
+            {% endif %}
+          </a>
+        {% if request.page_type == 'index' %}
+          </h1>
+        {% else %}
+          </div>
+        {% endif %}
       </div>
     </div>
 
-    <div class="shahidstore-categories-pills">
-      {% for block in section.blocks %}
-        {% if block.type == 'category_pill' %}
-          <a href="{{ block.settings.url }}" class="shahidstore-pill-item" {{ block.shopify_attributes }}>
-            {% if block.settings.icon %}
-              <img src="{{ block.settings.icon | image_url: width: 50 }}" alt="{{ block.settings.title }}" loading="lazy">
-            {% endif %}
-            <span>{{ block.settings.title }}</span>
-          </a>
-        {% endif %}
-      {% endfor %}
-    </div>
+    <nav class="shahidstore-categories-nav" aria-label="تصنيفات المتجر">
+      <div class="shahidstore-categories-pills">
+        {% for block in section.blocks %}
+          {% if block.type == 'category_pill' %}
+            <a href="{{ block.settings.url }}" class="shahidstore-pill-item" {{ block.shopify_attributes }}>
+              {% if block.settings.icon %}
+                <img src="{{ block.settings.icon | image_url: width: 50 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="24" height="24">
+              {% endif %}
+              <span>{{ block.settings.title | escape }}</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </nav>
   </div>
 
   {%- comment -%} Mobile Layout {%- endcomment -%}
   <div class="shahidstore-mobile-header">
     <div class="shahidstore-mobile-top">
-      <button class="shahidstore-menu-toggle" onclick="document.getElementById('shahidstore-drawer').classList.toggle('is-active')">&#9776;</button>
+      <button class="shahidstore-menu-toggle" aria-label="فتح القائمة الجانبية" aria-controls="shahidstore-drawer" aria-expanded="false" onclick="document.getElementById('shahidstore-drawer').classList.toggle('is-active')">&#9776;</button>
       
       <div class="shahidstore-logo">
-        <a href="{{ routes.root_url }}">
-          {% if section.settings.shahidstore_logo %}
-            <img src="{{ section.settings.shahidstore_logo | image_url: width: 140 }}" alt="{{ shop.name }}" loading="lazy">
-          {% else %}
-            <h3>{{ shop.name }}</h3>
-          {% endif %}
-        </a>
+        {% if request.page_type == 'index' %}
+          <h1 class="shahidstore-logo-heading">
+        {% else %}
+          <div class="shahidstore-logo-wrapper">
+        {% endif %}
+          <a href="{{ routes.root_url }}">
+            {% if section.settings.shahidstore_logo %}
+              <img src="{{ section.settings.shahidstore_logo | image_url: width: 140 }}" alt="{{ shop.name | escape }}" loading="eager" fetchpriority="high">
+            {% else %}
+              <span class="shahidstore-shop-name">{{ shop.name | escape }}</span>
+            {% endif %}
+          </a>
+        {% if request.page_type == 'index' %}
+          </h1>
+        {% else %}
+          </div>
+        {% endif %}
       </div>
     </div>
 
-    <div class="shahidstore-categories-pills">
-      {% for block in section.blocks %}
-        {% if block.type == 'category_pill' %}
-          <a href="{{ block.settings.url }}" class="shahidstore-pill-item">
-            {% if block.settings.icon %}
-              <img src="{{ block.settings.icon | image_url: width: 40 }}" alt="{{ block.settings.title }}" loading="lazy">
-            {% endif %}
-            <span>{{ block.settings.title }}</span>
-          </a>
-        {% endif %}
-      {% endfor %}
-    </div>
+    <nav class="shahidstore-categories-nav-mobile" aria-label="تصنيفات السريعة">
+      <div class="shahidstore-categories-pills">
+        {% for block in section.blocks %}
+          {% if block.type == 'category_pill' %}
+            <a href="{{ block.settings.url }}" class="shahidstore-pill-item">
+              {% if block.settings.icon %}
+                <img src="{{ block.settings.icon | image_url: width: 40 }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="24" height="24">
+              {% endif %}
+              <span>{{ block.settings.title | escape }}</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </nav>
   </div>
 
   {% render 'shahidstore-drawer' %}

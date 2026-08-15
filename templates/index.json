@@ -10,12 +10,8 @@
 {
   "sections": {
     "main": {
-      "type": "shahidstore-header",
-      "disabled": true,
-      "settings": {
-        "primary_color": "#e0ac00",
-        "pages_menu": "main-menu"
-      }
+      "type": "header",
+      "settings": {}
     }
   },
   "order": [
