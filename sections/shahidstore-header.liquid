@@ -5,19 +5,6 @@
   {%- comment -%} Desktop Layout {%- endcomment -%}
   <div class="shahidstore-desktop-header">
     <div class="shahidstore-top-bar">
-      <div class="shahidstore-auth-buttons">
-        <a href="{{ routes.account_register_url }}" class="shahidstore-btn-register">حساب جديد +</a>
-        <a href="{{ routes.account_login_url }}" class="shahidstore-btn-login">تسجيل الدخول &rarr;</a>
-      </div>
-
-      <nav class="shahidstore-pages-nav" aria-label="قائمة الصفحات">
-        <ul class="shahidstore-pages-menu">
-          {% for link in section.settings.pages_menu.links %}
-            <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
-          {% endfor %}
-        </ul>
-      </nav>
-
       <div class="shahidstore-logo">
         {% if request.page_type == 'index' %}
           <h1 class="shahidstore-logo-heading">
@@ -36,6 +23,19 @@
         {% else %}
           </div>
         {% endif %}
+      </div>
+
+      <nav class="shahidstore-pages-nav" aria-label="قائمة الصفحات">
+        <ul class="shahidstore-pages-menu">
+          {% for link in section.settings.pages_menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <div class="shahidstore-auth-buttons">
+        <a href="{{ routes.account_register_url }}" class="shahidstore-btn-register">حساب جديد +</a>
+        <a href="{{ routes.account_login_url }}" class="shahidstore-btn-login">تسجيل الدخول &rarr;</a>
       </div>
     </div>
 
@@ -102,7 +102,7 @@
 
 {% schema %}
 {
-  "name": "Header",
+  "name": "ShahidStore Header",
   "class": "section-header",
   "settings": [
     {
@@ -149,7 +149,7 @@
   ],
   "presets": [
     {
-      "name": "Header",
+      "name": "ShahidStore Header",
       "blocks": [
         { "type": "category_pill", "settings": { "title": "فالكون" } },
         { "type": "category_pill", "settings": { "title": "هولك" } },
