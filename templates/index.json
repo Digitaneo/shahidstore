@@ -1,4 +1,25 @@
 {
-  "sections": {},
-  "order": []
+  "sections": {
+    "slideshow_banner": {
+      "type": "shahidstore-banner",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "title": "اشترك الآن واستمتع دون توقف",
+            "button_text": "اشترك الآن"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1"
+      ],
+      "settings": {
+        "autoplay_speed": 5
+      }
+    }
+  },
+  "order": [
+    "slideshow_banner"
+  ]
 }
