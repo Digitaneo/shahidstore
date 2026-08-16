@@ -9,13 +9,77 @@
  */
 {
   "sections": {
-    "shahidstore_banner_q3bf7n": {
+    "shahidstore_banner_HEPFaY": {
       "type": "shahidstore-banner",
+      "blocks": {
+        "slide_J6Jz4T": {
+          "type": "slide",
+          "settings": {
+            "title": "Subscribe now",
+            "button_text": "Subscribe",
+            "button_link": "",
+            "button_bg_color": "#e0ac00",
+            "button_text_color": "#000000",
+            "button_border_radius": 25
+          }
+        },
+        "slide_cbLVtV": {
+          "type": "slide",
+          "settings": {
+            "title": "Subscribe now",
+            "button_text": "Subscribe",
+            "button_link": "",
+            "button_bg_color": "#e0ac00",
+            "button_text_color": "#000000",
+            "button_border_radius": 25
+          }
+        },
+        "slide_LPmLVm": {
+          "type": "slide",
+          "settings": {
+            "title": "Subscribe now",
+            "button_text": "Subscribe",
+            "button_link": "",
+            "button_bg_color": "#e0ac00",
+            "button_text_color": "#000000",
+            "button_border_radius": 25
+          }
+        },
+        "slide_gVg9p8": {
+          "type": "slide",
+          "settings": {
+            "title": "Subscribe now",
+            "button_text": "Subscribe",
+            "button_link": "",
+            "button_bg_color": "#e0ac00",
+            "button_text_color": "#000000",
+            "button_border_radius": 25
+          }
+        },
+        "slide_ARGiHy": {
+          "type": "slide",
+          "settings": {
+            "title": "Subscribe now",
+            "button_text": "Subscribe",
+            "button_link": "",
+            "button_bg_color": "#e0ac00",
+            "button_text_color": "#000000",
+            "button_border_radius": 25
+          }
+        }
+      },
+      "block_order": [
+        "slide_J6Jz4T",
+        "slide_cbLVtV",
+        "slide_LPmLVm",
+        "slide_gVg9p8",
+        "slide_ARGiHy"
+      ],
       "name": "Slideshow",
       "settings": {}
     }
   },
   "order": [
-    "shahidstore_banner_q3bf7n"
+    "shahidstore_banner_HEPFaY"
   ]
 }
