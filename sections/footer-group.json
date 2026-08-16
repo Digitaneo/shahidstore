@@ -10,6 +10,14 @@
 {
   "name": "Footer",
   "type": "footer",
-  "sections": {},
-  "order": []
+  "sections": {
+    "footer_yUaa3c": {
+      "type": "footer",
+      "name": "Footer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "footer_yUaa3c"
+  ]
 }
