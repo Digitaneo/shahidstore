@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "ShahidStore",
-    "theme_version": "1.10",
+    "theme_version": "1.1.0",
     "theme_author": "ShahidStore",
     "theme_documentation_url": "https://shahidstore.com",
     "theme_support_url": "https://shahidstore.com"
@@ -16,9 +16,18 @@
         "label": "Heading Font (خط العناوين)",
         "default": "Cairo",
         "options": [
-          { "value": "Cairo", "label": "Cairo (القاهرة)" },
-          { "value": "Tajawal", "label": "Tajawal (تجوال)" },
-          { "value": "Almarai", "label": "Almarai (المراعي)" }
+          {
+            "value": "Cairo",
+            "label": "Cairo (القاهرة)"
+          },
+          {
+            "value": "Tajawal",
+            "label": "Tajawal (تجوال)"
+          },
+          {
+            "value": "Almarai",
+            "label": "Almarai (المراعي)"
+          }
         ]
       },
       {
@@ -27,9 +36,18 @@
         "label": "Body Font (خط النصوص والفقرات)",
         "default": "Tajawal",
         "options": [
-          { "value": "Cairo", "label": "Cairo (القاهرة)" },
-          { "value": "Tajawal", "label": "Tajawal (تجوال)" },
-          { "value": "Almarai", "label": "Almarai (المراعي)" }
+          {
+            "value": "Cairo",
+            "label": "Cairo (القاهرة)"
+          },
+          {
+            "value": "Tajawal",
+            "label": "Tajawal (تجوال)"
+          },
+          {
+            "value": "Almarai",
+            "label": "Almarai (المراعي)"
+          }
         ]
       }
     ]
