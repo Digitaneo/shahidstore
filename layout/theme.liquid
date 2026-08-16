@@ -12,6 +12,10 @@
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
     <style>
       @font-face {
         font-family: 'Cairo';
@@ -57,8 +61,8 @@
       }
 
       :root {
-        --font-heading-family: '{{ settings.heading_font_family | default: "Cairo" }}', system-ui, sans-serif;
-        --font-body-family: '{{ settings.body_font_family | default: "Tajawal" }}', system-ui, sans-serif;
+        --font-heading-family: '{{ settings.heading_font_family | default: "Cairo" }}', 'Cairo', system-ui, sans-serif;
+        --font-body-family: '{{ settings.body_font_family | default: "Tajawal" }}', 'Tajawal', system-ui, sans-serif;
       }
     </style>
 
@@ -174,6 +178,13 @@
 
     {{ 'shahidstore-header.css' | asset_url | stylesheet_tag }}
     {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    <style>
+      :root {
+        --font-heading-family: '{{ settings.heading_font_family | default: "Cairo" }}', 'Cairo', system-ui, sans-serif !important;
+        --font-body-family: '{{ settings.body_font_family | default: "Tajawal" }}', 'Tajawal', system-ui, sans-serif !important;
+      }
+    </style>
 
     <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
   </head>

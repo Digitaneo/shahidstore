@@ -3,10 +3,6 @@
    ========================================================================== */
 
 :root {
-  /* Default typography fallbacks - overridden dynamically by theme.liquid */
-  --font-heading-family: 'Cairo', system-ui, sans-serif;
-  --font-body-family: 'Tajawal', system-ui, sans-serif;
-  
   --shahidstore-bg-dark: #121212;
   --shahidstore-text-light: #ffffff;
   --shahidstore-gold: #e0ac00;
