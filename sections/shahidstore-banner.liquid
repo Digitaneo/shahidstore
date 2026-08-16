@@ -1,15 +1,230 @@
-<!-- Shahidstore Banner Section - Minimal Test -->
-<div>
-  <p>Banner section is working</p>
+{{ 'shahidstore-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="shahidstore-slideshow-container"
+     id="Slideshow-{{ section.id }}"
+     data-autoplay-interval="{{ section.settings.autoplay_speed | times: 1000 }}"
+     {{ section.shopify_attributes }}>
+
+  <div class="shahidstore-slideshow-inner">
+    {% for block in section.blocks %}
+      {% if block.type == 'slide' %}
+        <div class="shahidstore-slide-item {% if forloop.first %}is-active{% endif %}"
+             data-index="{{ forloop.index0 }}"
+             {{ block.shopify_attributes }}>
+
+          {% if block.settings.desktop_image != blank %}
+            <img src="{{ block.settings.desktop_image | image_url: width: 1800 }}"
+                 srcset="{{ block.settings.desktop_image | image_url: width: 600 }} 600w,
+                         {{ block.settings.desktop_image | image_url: width: 1200 }} 1200w,
+                         {{ block.settings.desktop_image | image_url: width: 1800 }} 1800w"
+                 sizes="100vw"
+                 alt="{{ block.settings.title | escape }}"
+                 class="shahidstore-slide-bg shahidstore-desktop-only-bg"
+                 loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                 fetchpriority="{% if forloop.first %}high{% else %}low{% endif %}">
+          {% else %}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'shahidstore-slide-bg shahidstore-desktop-only-bg' }}
+          {% endif %}
+
+          {% if block.settings.mobile_image != blank %}
+            <img src="{{ block.settings.mobile_image | image_url: width: 800 }}"
+                 srcset="{{ block.settings.mobile_image | image_url: width: 400 }} 400w,
+                         {{ block.settings.mobile_image | image_url: width: 800 }} 800w"
+                 sizes="100vw"
+                 alt="{{ block.settings.title | escape }}"
+                 class="shahidstore-slide-bg shahidstore-mobile-only-bg"
+                 loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+          {% elsif block.settings.desktop_image != blank %}
+            <img src="{{ block.settings.desktop_image | image_url: width: 800 }}"
+                 alt="{{ block.settings.title | escape }}"
+                 class="shahidstore-slide-bg shahidstore-mobile-only-bg"
+                 loading="{% if forloop.first %}eager{% else %}lazy{% endif %}">
+          {% else %}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'shahidstore-slide-bg shahidstore-mobile-only-bg' }}
+          {% endif %}
+
+          <div class="shahidstore-slide-overlay">
+            <div class="shahidstore-slide-content">
+              <h2 class="shahidstore-slide-title">{{ block.settings.title | escape | newline_to_br }}</h2>
+              {% if block.settings.button_text != blank %}
+                <a href="{{ block.settings.button_link | default: '#' }}"
+                   class="shahidstore-slide-button"
+                   style="background-color: {{ block.settings.button_bg_color }}; color: {{ block.settings.button_text_color }}; border-radius: {{ block.settings.button_border_radius }}px;">
+                  {{ block.settings.button_text | escape }}
+                </a>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if section.blocks.size > 1 %}
+    <div class="shahidstore-slideshow-dots">
+      {% for block in section.blocks %}
+        {% if block.type == 'slide' %}
+          <button class="shahidstore-slideshow-dot {% if forloop.first %}is-active{% endif %}"
+                  data-index="{{ forloop.index0 }}"
+                  aria-label="Slide {{ forloop.index }}">
+          </button>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var container = document.getElementById('Slideshow-{{ section.id }}');
+  if (!container) return;
+
+  var slides = container.querySelectorAll('.shahidstore-slide-item');
+  var dots = container.querySelectorAll('.shahidstore-slideshow-dot');
+  var currentIndex = 0;
+  var intervalTime = parseInt(container.dataset.autoplayInterval) || 5000;
+  var timer;
+
+  function showSlide(index) {
+    if (slides.length === 0) return;
+    for (var i = 0; i < slides.length; i++) {
+      slides[i].classList.remove('is-active');
+    }
+    for (var j = 0; j < dots.length; j++) {
+      dots[j].classList.remove('is-active');
+    }
+    slides[index].classList.add('is-active');
+    if (dots[index]) dots[index].classList.add('is-active');
+    currentIndex = index;
+  }
+
+  function nextSlide() {
+    var next = (currentIndex + 1) % slides.length;
+    showSlide(next);
+  }
+
+  function startAutoplay() {
+    if (slides.length <= 1) return;
+    timer = setInterval(nextSlide, intervalTime);
+  }
+
+  function resetAutoplay() {
+    clearInterval(timer);
+    startAutoplay();
+  }
+
+  for (var d = 0; d < dots.length; d++) {
+    dots[d].addEventListener('click', function() {
+      var idx = parseInt(this.dataset.index);
+      showSlide(idx);
+      resetAutoplay();
+    });
+  }
+
+  document.addEventListener('shopify:block:select', function(e) {
+    if (e.target.classList.contains('shahidstore-slide-item')) {
+      clearInterval(timer);
+      for (var k = 0; k < slides.length; k++) {
+        if (slides[k] === e.target) {
+          showSlide(k);
+          break;
+        }
+      }
+    }
+  });
+
+  document.addEventListener('shopify:block:deselect', function() {
+    resetAutoplay();
+  });
+
+  showSlide(0);
+  startAutoplay();
+});
+</script>
 
 {% schema %}
 {
   "name": "Slideshow",
-  "settings": [],
+  "settings": [
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 3,
+      "max": 9,
+      "step": 1,
+      "unit": "s",
+      "label": "Autoplay speed",
+      "default": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop image (1920x600)"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image (750x450)"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Title",
+          "default": "Subscribe now"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Subscribe"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "Button color",
+          "default": "#e0ac00"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button text color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "button_border_radius",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Button border radius",
+          "default": 25
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
   "presets": [
     {
-      "name": "Slideshow"
+      "name": "Slideshow",
+      "blocks": [
+        {
+          "type": "slide"
+        }
+      ]
     }
   ]
 }
