@@ -10,6 +10,53 @@
 {
   "name": "Header",
   "type": "header",
-  "sections": {},
-  "order": []
+  "sections": {
+    "header_i9cfdw": {
+      "type": "header",
+      "blocks": {
+        "category_pill_9wYfKT": {
+          "type": "category_pill",
+          "settings": {
+            "title": "فالكون",
+            "url": ""
+          }
+        },
+        "category_pill_K9REhP": {
+          "type": "category_pill",
+          "settings": {
+            "title": "هولك",
+            "url": ""
+          }
+        },
+        "category_pill_Wm74Ff": {
+          "type": "category_pill",
+          "settings": {
+            "title": "سمارترز برو",
+            "url": ""
+          }
+        },
+        "category_pill_CRzC94": {
+          "type": "category_pill",
+          "settings": {
+            "title": "عروض سنوية",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_pill_9wYfKT",
+        "category_pill_K9REhP",
+        "category_pill_Wm74Ff",
+        "category_pill_CRzC94"
+      ],
+      "name": "Header",
+      "settings": {
+        "primary_color": "#e0ac00",
+        "pages_menu": "main-menu"
+      }
+    }
+  },
+  "order": [
+    "header_i9cfdw"
+  ]
 }
