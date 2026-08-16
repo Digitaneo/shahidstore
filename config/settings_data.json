@@ -9,6 +9,7 @@
  */
 {
   "current": {
+    "layout_direction": "auto",
     "favicon": "shopify://shop_images/Logo_Square.webp",
     "sections": {
       "header": {
