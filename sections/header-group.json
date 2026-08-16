@@ -18,7 +18,8 @@
           "type": "category_pill",
           "settings": {
             "title": "فالكون",
-            "url": ""
+            "icon": "shopify://shop_images/Logo_Square.webp",
+            "url": "shopify://collections/frontpage"
           }
         },
         "category_pill_ffjaha": {
