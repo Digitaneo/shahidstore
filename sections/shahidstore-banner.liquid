@@ -2,7 +2,7 @@
 
 <div class="shahidstore-slideshow-container" 
      id="Slideshow-{{ section.id }}" 
-     data-autoplay-interval="{{ section.settings.autoplay_speed | multiply: 1000 }}"
+     data-autoplay-interval="{{ section.settings.autoplay_speed | times: 1000 }}"
      {{ section.shopify_attributes }}>
   
   <div class="shahidstore-slideshow-inner">
@@ -149,6 +149,9 @@ document.addEventListener('DOMContentLoaded', function() {
   "name": "البانر المتحرك (Slideshow Banner)",
   "tag": "section",
   "class": "section-slideshow-banner",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
   "max_blocks": 6,
   "settings": [
     {
