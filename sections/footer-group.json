@@ -14,7 +14,19 @@
     "footer_yUaa3c": {
       "type": "footer",
       "name": "Footer",
-      "settings": {}
+      "settings": {
+        "logo": "shopify://shop_images/Logo_Square.webp",
+        "description": "متجر متخصص في باقات الاشتراكات الرقمية بأسعار مناسبة ودعم متواصل.",
+        "badge1": "15% VAT مشمولة",
+        "badge2": "دعم متواصل",
+        "col1_title": "روابط مهمة",
+        "menu1": "main-menu",
+        "col2_title": "الشروط والسياسات",
+        "menu2": "footer",
+        "cta_title": "تواصل معنا",
+        "contact_link": "",
+        "telegram_link": ""
+      }
     }
   },
   "order": [
