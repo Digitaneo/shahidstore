@@ -18,7 +18,7 @@
           {% assign count = count | plus: 1 %}
           {% assign item_badge = item.metafields.custom['Product-badge'].value | default: item.metafields.custom['Product-badge'] %}
 
-          <div class="rp-card">
+          <a href="{{ item.url }}" class="rp-card">
             <div class="rp-image-box">
               {% if item_badge != blank %}
                 <span class="rp-badge">{{ item_badge }}</span>
@@ -48,15 +48,15 @@
                 {% endif %}
               </div>
 
-              <a href="{{ item.url }}" class="rp-btn">
+              <span class="rp-btn">
                 {{ section.settings.button_text }}
-              </a>
+              </span>
             </div>
-          </div>
+          </a>
         {% endif %}
       {% else %}
         {% for i in (1..4) %}
-          <div class="rp-card">
+          <a href="#" class="rp-card">
             <div class="rp-image-box">
               {{ 'product-' | append: i | placeholder_svg_tag }}
             </div>
@@ -65,9 +65,9 @@
               <div class="rp-pricing">
                 <span class="rp-price-current">130 ر.س</span>
               </div>
-              <a href="#" class="rp-btn">اشترك الآن</a>
+              <span class="rp-btn">اشترك الآن</span>
             </div>
-          </div>
+          </a>
         {% endfor %}
       {% endfor %}
     </div>

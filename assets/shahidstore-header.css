@@ -92,7 +92,7 @@
 .shahidstore-categories-pills {
     display: flex;
     gap: 30px;
-    justify-content: center;
+    justify-content: space-between;
     overflow-x: auto;
     padding-bottom: 5px;
 }
@@ -100,10 +100,10 @@
 .shahidstore-pill-item {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     border: 1px solid var(--shahidstore-gold);
     border-radius: var(--shahidstore-border-radius);
-    padding: 6px 20px;
+    padding: 6px 10px;
     text-decoration: none;
     color: var(--shahidstore-text);
     white-space: nowrap;
