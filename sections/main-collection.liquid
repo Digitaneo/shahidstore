@@ -79,7 +79,7 @@
             {% assign badge_val = product.metafields.custom['Product-badge'].value | default: product.metafields.custom['Product-badge'] %}
             {% assign screens_val = product.metafields.custom['screens-count'].value | default: product.metafields.custom['screens-count'] %}
 
-            <div class="mc-card" 
+            <a href="{{ product.url }}" class="mc-card" 
                  data-title="{{ product.title | downcase | escape }}" 
                  data-price="{{ product.price }}" 
                  data-order="{{ forloop.index }}">
@@ -117,11 +117,11 @@
                   {% endif %}
                 </div>
 
-                <a href="{{ product.url }}" class="mc-btn">
+                <span class="mc-btn">
                   {{ section.settings.button_text }}
-                </a>
+                </span>
               </div>
-            </div>
+            </a>
           {% else %}
             <p style="text-align: center; grid-column: 1 / -1; color: #a0a0a0; padding: 40px 0;">لا توجد منتجات متوفرة حالياً في هذا القسم.</p>
           {% endfor %}

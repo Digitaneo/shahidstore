@@ -23,7 +23,7 @@
     <div class="fc-grid">
       {% assign target_collection = collections[section.settings.collection] %}
       {% for product in target_collection.products %}
-        <div class="fc-card">
+        <a href="{{ product.url }}" class="fc-card">
           <div class="fc-image-box">
             {% if product.metafields.custom['Product-badge'] != blank %}
                 <span class="fc-badge">{{ product.metafields.custom['Product-badge'] }}</span>
@@ -54,14 +54,14 @@
               {% endif %}
             </div>
 
-            <a href="{{ product.url }}" class="fc-btn">
+            <span class="fc-btn">
               {{ section.settings.button_text }}
-            </a>
+            </span>
           </div>
-        </div>
+        </a>
       {% else %}
         {% for i in (1..5) %}
-          <div class="fc-card">
+          <a href="#" class="fc-card">
             <div class="fc-image-box">
               {{ 'product-' | append: i | placeholder_svg_tag }}
             </div>
@@ -70,9 +70,9 @@
               <div class="fc-pricing">
                 <span class="fc-price-current">100 ر.س</span>
               </div>
-              <a href="#" class="fc-btn">اشترك الآن</a>
+              <span class="fc-btn">اشترك الآن</span>
             </div>
-          </div>
+          </a>
         {% endfor %}
       {% endfor %}
     </div>
