@@ -175,20 +175,6 @@
   background-color: #ffb834;
 }
 
-/* التوافق مع الهواتف والأجهزة اللوحية */
-@media (max-width: 1100px) {
-  .fc-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-
-@media (max-width: 420px) {
-  .fc-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .fc-header {
   margin-bottom: 35px;
 }
@@ -220,7 +206,46 @@
   margin: 0;
 }
 
+/* التوافق مع الهواتف والأجهزة اللوحية */
+@media (max-width: 1100px) {
+  .fc-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
+  .fc-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .fc-body {
+    padding: 12px 10px 14px;
+  }
+  .fc-product-title {
+    font-size: 13px;
+    min-height: 36px;
+    margin-bottom: 6px;
+  }
+  .fc-orders-count {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+  .fc-price-current {
+    font-size: 16px;
+  }
+  .fc-price-compare {
+    font-size: 11px;
+  }
+  .fc-btn {
+    font-size: 13px;
+    padding: 8px 0;
+  }
+  .fc-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+    top: 8px;
+    right: 8px;
+  }
   .fc-header-right {
     gap: 12px;
   }

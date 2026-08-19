@@ -92,21 +92,29 @@
 .shahidstore-categories-pills {
     display: flex;
     gap: 30px;
-    justify-content: space-between;
+    justify-content: center;
     overflow-x: auto;
     padding-bottom: 5px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.shahidstore-categories-pills::-webkit-scrollbar {
+    display: none;
 }
 
 .shahidstore-pill-item {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     border: 1px solid var(--shahidstore-gold);
     border-radius: var(--shahidstore-border-radius);
-    padding: 6px 10px;
+    padding: 6px 14px;
     text-decoration: none;
     color: var(--shahidstore-text);
     white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
 }
 
 .shahidstore-pill-item img {
@@ -124,13 +132,24 @@
     .shahidstore-desktop-header {
         display: none;
     }
+
+    .shahidstore-categories-nav-mobile {
+        margin: 0 -20px;
+        overflow: hidden;
+    }
+
     .shahidstore-categories-pills {
-    gap: 5px;
+        justify-content: flex-start;
+        gap: 8px;
+        padding: 4px 20px 8px 20px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     body.shahidstore-template, body, .shahidstore-header-wrapper, .shahidstore-pages-menu a, .shahidstore-drawer, p, span, a, li, button, input, select, textarea {
-    font-size: 12px;
-}
+        font-size: 12px;
+    }
+
     .shahidstore-mobile-header {
         display: flex;
         flex-direction: column;
@@ -155,22 +174,77 @@
     }
 }
 
+/* Mobile Drawer Overlay */
+.shahidstore-drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.shahidstore-drawer-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
 /* Mobile Drawer */
 .shahidstore-drawer {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 280px;
+    width: 290px;
+    max-width: 85vw;
     height: 100%;
     background: #252525;
     z-index: 9999;
-    transition: 0.3s ease;
+    transition: right 0.3s ease;
     padding: 20px;
     box-sizing: border-box;
+    overflow-y: auto;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
 }
 
 .shahidstore-drawer.is-active {
     right: 0;
+}
+
+.shahidstore-drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.shahidstore-drawer-close {
+    background: transparent;
+    border: 1px solid #e6ad00;
+    color: #e6ad00;
+    font-size: 26px;
+    line-height: 1;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    padding: 0;
+}
+
+.shahidstore-drawer-close:hover,
+.shahidstore-drawer-close:active {
+    background-color: #e6ad00;
+    color: #000000;
 }
 
 .shahidstore-drawer-section {

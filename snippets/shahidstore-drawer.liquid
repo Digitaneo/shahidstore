@@ -1,8 +1,15 @@
+<div id="shahidstore-drawer-overlay" class="shahidstore-drawer-overlay" onclick="document.getElementById('shahidstore-drawer').classList.remove('is-active'); this.classList.remove('is-active');"></div>
+
 <nav id="shahidstore-drawer" class="shahidstore-drawer" aria-label="القائمة الجانبية">
-  <div class="shahidstore-logo" style="text-align: center; margin-bottom: 20px;">
-    {% if section.settings.shahidstore_logo %}
-      <img src="{{ section.settings.shahidstore_logo | image_url: width: 150 }}" alt="{{ shop.name | escape }}" loading="lazy" width="150" height="50">
-    {% endif %}
+  <div class="shahidstore-drawer-header">
+    <div class="shahidstore-logo">
+      {% if section.settings.shahidstore_logo %}
+        <img src="{{ section.settings.shahidstore_logo | image_url: width: 150 }}" alt="{{ shop.name | escape }}" loading="lazy" width="150" height="50">
+      {% else %}
+        <span class="shahidstore-shop-name">{{ shop.name | escape }}</span>
+      {% endif %}
+    </div>
+    <button type="button" class="shahidstore-drawer-close" aria-label="إغلاق القائمة" onclick="document.getElementById('shahidstore-drawer').classList.remove('is-active'); document.getElementById('shahidstore-drawer-overlay')?.classList.remove('is-active');">&times;</button>
   </div>
 
   <div class="shahidstore-drawer-section">

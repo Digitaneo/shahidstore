@@ -56,24 +56,50 @@
   }
 
   .store-features__title {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     margin: 0;
     color: {{ section.settings.text_color }};
-    white-space: nowrap;
   }
 
   /* الاستجابة مع الهواتف الذكية */
   @media screen and (max-width: 768px) {
+    .store-features__container {
+      padding: 0 10px;
+    }
+
     .store-features__list {
-      flex-direction: column;
-      gap: 20px;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-around;
       align-items: center;
+      gap: 10px;
     }
 
     .store-features__item {
-      width: 100%;
+      flex: 1 1 0px;
+      width: auto;
       justify-content: center;
+      text-align: center;
+      flex-direction: row;
+      gap: 6px;
+    }
+
+    .store-features__icon-wrapper {
+      width: 36px;
+      height: 36px;
+    }
+
+    .store-features__icon-wrapper svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .store-features__title {
+      font-size: 12px;
+      white-space: normal;
+      line-height: 1.25;
+      word-break: break-word;
     }
   }
 {%- endstyle -%}

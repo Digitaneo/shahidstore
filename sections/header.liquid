@@ -58,7 +58,7 @@
   {%- comment -%} Mobile Layout {%- endcomment -%}
   <div class="shahidstore-mobile-header">
     <div class="shahidstore-mobile-top">
-      <button class="shahidstore-menu-toggle" aria-label="فتح القائمة الجانبية" aria-controls="shahidstore-drawer" aria-expanded="false" onclick="document.getElementById('shahidstore-drawer').classList.toggle('is-active')">&#9776;</button>
+      <button class="shahidstore-menu-toggle" aria-label="فتح القائمة الجانبية" aria-controls="shahidstore-drawer" aria-expanded="false" onclick="document.getElementById('shahidstore-drawer').classList.add('is-active'); document.getElementById('shahidstore-drawer-overlay')?.classList.add('is-active');">&#9776;</button>
       
       <div class="shahidstore-logo">
         {% if request.page_type == 'index' %}
