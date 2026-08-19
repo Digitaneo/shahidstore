@@ -1,0 +1,311 @@
+.bundle-section {
+  direction: rtl;
+  background-color: #1a1a15;
+  padding: 60px 20px;
+  color: #ffffff;
+  font-family: inherit;
+}
+
+.bundle-container {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+/* الرأس العلوي مع أيقونة الهدية */
+.bundle-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.bundle-header-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #f5a623;
+  color: #111111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bundle-header-text h2 {
+  font-size: 26px;
+  font-weight: 900;
+  margin: 0 0 4px;
+  color: #ffffff;
+}
+
+.bundle-header-text p {
+  font-size: 13px;
+  color: #a0a0a0;
+  margin: 0;
+}
+
+/* بطاقة العرض المزدوجة */
+.bundle-card {
+  background-color: #242424;
+  border: 1px solid #333333;
+  border-radius: 24px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.bundle-card:hover {
+  border-color: rgba(245, 166, 35, 0.5);
+  box-shadow: 0 0 30px rgba(245, 166, 35, 0.25);
+}
+
+/* تفاصيل العرض */
+.bundle-content {
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bundle-title {
+  font-size: 24px;
+  font-weight: 900;
+  margin: 0 0 6px;
+  color: #ffffff;
+}
+
+.bundle-badge {
+  color: #f5a623;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+/* صندوق "داخل المجموعة" */
+.bundle-includes {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.bundle-includes-label {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background-color: #242424;
+  padding: 0 8px;
+  font-size: 12px;
+  color: #888888;
+}
+
+.bundle-includes-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 16px;
+}
+
+.bundle-mini-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bundle-mini-logo {
+  max-height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
+.bundle-mini-info h4 {
+  font-size: 14px;
+  margin: 0;
+  color: #ffffff;
+}
+
+.bundle-mini-info span {
+  font-size: 11px;
+  color: #888888;
+}
+
+/* قائمة المزايا والخصائص */
+.bundle-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bundle-features li {
+  font-size: 13px;
+  color: #d1d1d1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bundle-features svg {
+  color: #f5a623;
+  flex-shrink: 0;
+}
+
+/* السعر والضمان */
+.bundle-pricing-row {
+  margin-bottom: 16px;
+}
+
+.bundle-prices {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.bundle-price-current {
+  font-size: 32px;
+  font-weight: 900;
+  color: #f5a623;
+}
+
+.bundle-price-compare {
+  font-size: 16px;
+  color: #777777;
+  text-decoration: line-through;
+}
+
+.bundle-guarantees {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  color: #888888;
+}
+
+.bundle-guarantees span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* زر الشراء */
+.bundle-btn {
+  background-color: #f5a623;
+  color: #111111;
+  font-size: 16px;
+  font-weight: 800;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 12px;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.bundle-btn:hover {
+  background-color: #ffb834;
+  transform: translateY(-2px);
+}
+
+/* صورة العرض */
+.bundle-media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+  background-color: #111111;
+  overflow: hidden;
+  border-radius: 24px 0 0 24px;
+}
+
+.bundle-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* شريط انعكاس ومرور الضوء */
+.bundle-media::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  pointer-events: none;
+  opacity: 0;
+  transition: none;
+}
+
+/* تفعيل مرور الضوء عند تحويم الماوس */
+.bundle-card:hover .bundle-media::after {
+  opacity: 1;
+  left: 130%;
+  transition: left 0.85s ease-in-out;
+}
+
+
+element.style {
+}
+.section-title {
+    /* font-size: 1.4rem; */
+    /* font-weight
+Specifies weight of glyphs in the font, their degree of blackness or stroke thickness.
+
+Widely available across major browsers (Baseline since January 2018)
+Learn more
+
+Don't show
+: 700; */
+    color: #0f172a;
+
+}
+.about-section {
+    margin-bottom: 35px;
+}
+
+
+/* التجاوب مع الشاشات الصغيرة */
+@media (max-width: 900px) {
+  .bundle-card {
+    grid-template-columns: 1fr;
+  }
+  
+  .bundle-media {
+    border-radius: 24px 24px 0 0;
+    min-height: 300px;
+    aspect-ratio: 16 / 9;
+  }
+  
+  .bundle-content {
+    padding: 24px 20px;
+  }
+  
+  .bundle-title {
+    font-size: 20px;
+  }
+  
+  .bundle-price-current {
+    font-size: 26px;
+  }
+}

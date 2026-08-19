@@ -1,0 +1,107 @@
+{{ 'related-products.css' | asset_url | stylesheet_tag }}
+
+{% assign target_collection = collections[section.settings.collection] %}
+{% if target_collection == blank and product.collections.first != blank %}
+  {% assign target_collection = product.collections.first %}
+{% endif %}
+
+<section class="rp-section">
+  <div class="rp-container">
+    <div class="rp-header">
+      <h2 class="rp-title">{{ section.settings.heading }}</h2>
+    </div>
+
+    <div class="rp-grid">
+      {% assign count = 0 %}
+      {% for item in target_collection.products %}
+        {% if item.id != product.id and count < 4 %}
+          {% assign count = count | plus: 1 %}
+          {% assign item_badge = item.metafields.custom['Product-badge'].value | default: item.metafields.custom['Product-badge'] %}
+
+          <div class="rp-card">
+            <div class="rp-image-box">
+              {% if item_badge != blank %}
+                <span class="rp-badge">{{ item_badge }}</span>
+              {% endif %}
+
+              {% if item.featured_image != blank %}
+                <img src="{{ item.featured_image | image_url: width: 450 }}" alt="{{ item.title | escape }}" loading="lazy">
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag }}
+              {% endif %}
+            </div>
+
+            <div class="rp-body">
+              <h3 class="rp-product-title">{{ item.title }}</h3>
+
+              <div class="rp-orders-count">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <span>{{ forloop.index | times: 340 | plus: 210 }} مشتري</span>
+              </div>
+
+              <div class="rp-pricing">
+                <span class="rp-price-current">{{ item.price | money }}</span>
+                {% if item.compare_at_price > item.price %}
+                  <span class="rp-price-compare">{{ item.compare_at_price | money }}</span>
+                {% endif %}
+              </div>
+
+              <a href="{{ item.url }}" class="rp-btn">
+                {{ section.settings.button_text }}
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      {% else %}
+        {% for i in (1..4) %}
+          <div class="rp-card">
+            <div class="rp-image-box">
+              {{ 'product-' | append: i | placeholder_svg_tag }}
+            </div>
+            <div class="rp-body">
+              <h3 class="rp-product-title">باقة مشابهة {{ i }}</h3>
+              <div class="rp-pricing">
+                <span class="rp-price-current">130 ر.س</span>
+              </div>
+              <a href="#" class="rp-btn">اشترك الآن</a>
+            </div>
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "باقات مشابهة",
+  "tag": "section",
+  "class": "section-related-products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "عنوان القسم",
+      "default": "باقات مشابهة"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "التصنيف المستهدف (اختياري، يقرأ التصنيف التلقائي إذا تُرك فارغاً)"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "نص الزر",
+      "default": "اشترك الآن"
+    }
+  ],
+  "presets": [
+    {
+      "name": "باقات مشابهة"
+    }
+  ]
+}
+{% endschema %}

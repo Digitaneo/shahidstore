@@ -1,0 +1,221 @@
+{{ 'main-collection.css' | asset_url | stylesheet_tag }}
+
+<section class="mc-section">
+  <div class="mc-container">
+    
+    <div class="mc-layout">
+      
+      <!-- الشريط الجانبي -->
+      <aside class="mc-sidebar">
+        
+        <!-- 1. صندوق البحث المباشر السريع -->
+        <div class="mc-sidebar-card">
+          <h3 class="mc-sidebar-title">البحث</h3>
+          <div class="mc-search-form">
+            <input 
+              type="text" 
+              id="LiveSearchInput" 
+              class="mc-search-input" 
+              placeholder="ابحث عن باقة..." 
+              autocomplete="off"
+            >
+            <div class="mc-search-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. صندوق التصنيفات الديناميكي المتزامن -->
+        <div class="mc-sidebar-card">
+          <h3 class="mc-sidebar-title">التصنيف</h3>
+          <ul class="mc-categories-list">
+            <li>
+              <a href="{{ routes.all_products_collection_url }}" class="mc-category-link {% if collection.handle == 'all' or collection.handle == blank %}is-active{% endif %}">
+                الكل
+              </a>
+            </li>
+
+            {% if section.settings.sidebar_menu != blank %}
+              {% for link in linklists[section.settings.sidebar_menu].links %}
+                <li>
+                  <a href="{{ link.url }}" class="mc-category-link {% if link.active %}is-active{% endif %}">
+                    {{ link.title }}
+                  </a>
+                </li>
+              {% endfor %}
+            {% else %}
+              {% for col in collections %}
+                {% unless col.handle == 'frontpage' or col.handle == 'all' %}
+                  <li>
+                    <a href="{{ col.url }}" class="mc-category-link {% if collection.handle == col.handle %}is-active{% endif %}">
+                      {{ col.title }}
+                    </a>
+                  </li>
+                {% endunless %}
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+
+        <!-- 3. صندوق الترتيب والفرز -->
+        <div class="mc-sidebar-card">
+          <h3 class="mc-sidebar-title">الترتيب</h3>
+          <select id="LiveSortSelect" class="mc-sort-select">
+            <option value="best-selling">الأكثر مبيعاً</option>
+            <option value="price-asc">السعر: من الأقل للأعلى</option>
+            <option value="price-desc">السعر: من الأعلى للأقل</option>
+          </select>
+        </div>
+
+      </aside>
+
+      <!-- شبكة عرض المنتجات -->
+      <main class="mc-main-content">
+        <div class="mc-grid" id="ProductGridContainer">
+          {% for product in collection.products %}
+            {% assign badge_val = product.metafields.custom['Product-badge'].value | default: product.metafields.custom['Product-badge'] %}
+            {% assign screens_val = product.metafields.custom['screens-count'].value | default: product.metafields.custom['screens-count'] %}
+
+            <div class="mc-card" 
+                 data-title="{{ product.title | downcase | escape }}" 
+                 data-price="{{ product.price }}" 
+                 data-order="{{ forloop.index }}">
+              
+              <div class="mc-image-box">
+                {% if badge_val != blank %}
+                  <span class="mc-badge-right">{{ badge_val }}</span>
+                {% endif %}
+
+                {% if screens_val != blank %}
+                  <span class="mc-badge-left">{{ screens_val }}</span>
+                {% endif %}
+
+                {% if product.featured_image != blank %}
+                  <img src="{{ product.featured_image | image_url: width: 450 }}" alt="{{ product.title | escape }}" loading="lazy">
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag }}
+                {% endif %}
+              </div>
+
+              <div class="mc-body">
+                <h2 class="mc-product-title">{{ product.title }}</h2>
+
+                <div class="mc-orders-count">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                  <span>{{ forloop.index | times: 230 | plus: 180 }} مشتري</span>
+                </div>
+
+                <div class="mc-pricing">
+                  <span class="mc-price-current">{{ product.price | money }}</span>
+                  {% if product.compare_at_price > product.price %}
+                    <span class="mc-price-compare">{{ product.compare_at_price | money }}</span>
+                  {% endif %}
+                </div>
+
+                <a href="{{ product.url }}" class="mc-btn">
+                  {{ section.settings.button_text }}
+                </a>
+              </div>
+            </div>
+          {% else %}
+            <p style="text-align: center; grid-column: 1 / -1; color: #a0a0a0; padding: 40px 0;">لا توجد منتجات متوفرة حالياً في هذا القسم.</p>
+          {% endfor %}
+
+          <!-- رسالة عدم وجود نتائج -->
+          <div id="NoResultsMessage" class="mc-no-results">
+            لا توجد باقات مطابقة لبحثك.
+          </div>
+        </div>
+      </main>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('LiveSearchInput');
+    const sortSelect = document.getElementById('LiveSortSelect');
+    const grid = document.getElementById('ProductGridContainer');
+    const noResults = document.getElementById('NoResultsMessage');
+    const cards = Array.from(grid.getElementsByClassName('mc-card'));
+
+    // البحث المباشر الفوري
+    if (searchInput) {
+      searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.trim().toLowerCase();
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const title = card.getAttribute('data-title') || '';
+          if (title.includes(query)) {
+            card.classList.remove('is-hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('is-hidden');
+          }
+        });
+
+        if (visibleCount === 0) {
+          noResults.style.display = 'block';
+        } else {
+          noResults.style.display = 'none';
+        }
+      });
+    }
+
+    // الفرز والترتيب المباشر
+    if (sortSelect) {
+      sortSelect.addEventListener('change', function() {
+        const sortType = this.value;
+        const sortedCards = [...cards];
+
+        sortedCards.sort((a, b) => {
+          const priceA = parseFloat(a.getAttribute('data-price')) || 0;
+          const priceB = parseFloat(b.getAttribute('data-price')) || 0;
+          const orderA = parseInt(a.getAttribute('data-order')) || 0;
+          const orderB = parseInt(b.getAttribute('data-order')) || 0;
+
+          if (sortType === 'price-asc') {
+            return priceA - priceB;
+          } else if (sortType === 'price-desc') {
+            return priceB - priceA;
+          } else {
+            return orderA - orderB;
+          }
+        });
+
+        sortedCards.forEach(card => grid.appendChild(card));
+        if (noResults) grid.appendChild(noResults);
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "صفحة المنتجات والتصنيف",
+  "tag": "section",
+  "class": "section-main-collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "نص زر الشراء",
+      "default": "اشترك الآن"
+    },
+    {
+      "type": "link_list",
+      "id": "sidebar_menu",
+      "label": "قائمة تصنيفات مخصصة من التنقل (اختياري)",
+      "info": "إذا تركت فارغة، سيتم سحب المجموعات الموجودة في المتجر بروابطها الصحيحة تلقائياً."
+    }
+  ]
+}
+{% endschema %}

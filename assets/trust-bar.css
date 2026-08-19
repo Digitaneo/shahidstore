@@ -1,0 +1,116 @@
+.tb-section {
+  direction: rtl;
+  padding: 25px 20px;
+  background-color: transparent;
+  font-family: inherit;
+}
+
+.tb-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* الإطار الرئيسي للشريط */
+.tb-wrapper {
+  background-color: rgba(36, 36, 36, 0.7);
+  border: 1px solid rgba(245, 166, 35, 0.35);
+  border-radius: 50px;
+  padding: 12px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(8px);
+  gap: 20px;
+}
+
+/* المجموعات الجانبية */
+.tb-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.tb-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #f5a623;
+  white-space: nowrap;
+}
+
+.tb-items {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* الصناديق الفردية للأيقونات وشعارات الدفع */
+.tb-box {
+  height: 42px;
+  min-width: 48px;
+  padding: 0 12px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.tb-box:hover {
+  border-color: rgba(245, 166, 35, 0.4);
+  background-color: rgba(255, 255, 255, 0.07);
+}
+
+.tb-box svg {
+  width: 22px;
+  height: 22px;
+  color: #f5a623;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tb-box img {
+  max-height: 22px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* الفاصل الرأسي بين القسمين */
+.tb-divider {
+  width: 1px;
+  height: 32px;
+  background-color: rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+}
+
+/* التجاوب مع شاشات الهواتف والأجهزة اللوحية */
+@media (max-width: 900px) {
+  .tb-wrapper {
+    flex-direction: column;
+    border-radius: 24px;
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  .tb-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .tb-group {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tb-items {
+    justify-content: center;
+  }
+}

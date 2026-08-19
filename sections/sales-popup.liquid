@@ -1,0 +1,147 @@
+{{ 'sales-popup.css' | asset_url | stylesheet_tag }}
+
+<div id="SalesToastWrapper" class="sales-toast-wrapper" aria-live="polite">
+  <div class="sales-toast-card">
+    
+    <!-- زر الإغلاق -->
+    <button type="button" id="SalesToastClose" class="sales-toast-close" aria-label="إغلاق">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- تفاصيل المشتري والطلب -->
+    <div class="sales-toast-content">
+      <p class="sales-toast-buyer" id="SalesToastBuyer">خالد من تبوك</p>
+      <p class="sales-toast-product" id="SalesToastProduct">اشترك في هولك 6 أشهر · قبل 15 دقيقة</p>
+    </div>
+
+    <!-- أيقونة السلة -->
+    <div class="sales-toast-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toast = document.getElementById('SalesToastWrapper');
+    const closeBtn = document.getElementById('SalesToastClose');
+    const buyerEl = document.getElementById('SalesToastBuyer');
+    const productEl = document.getElementById('SalesToastProduct');
+
+    if (!toast) return;
+
+    // بنك الأسماء الشخصية
+    const firstNames = [
+      "محمد", "عبدالله", "أحمد", "خالد", "فهد", "سعود", "سلطان", "عبدالعزيز", "فيصل", "عمر",
+      "إبراهيم", "علي", "سعد", "تركي", "منصور", "بندر", "نايف", "سلمان", "حمد", "وليد",
+      "صالح", "ماجد", "ريان", "بدر", "ناصر", "يوسف", "طارق", "مشعل", "مشاري", "عبدالرحمن",
+      "حسام", "ياسر", "فواز", "مهند", "سامي", "عادل", "زياد", "فارس", "طلال", "هشام",
+      "راشد", "سعيد", "حامد", "نواف", "حاتم", "جمال", "مبارك", "معاذ", "أيمن", "حمزة"
+    ];
+
+    // بنك المدن والمناطق (السعودية والخليج)
+    const cities = [
+      "الرياض", "جدة", "الدمام", "مكة المكرمة", "المدينة المنورة", "الخبر", "تبوك", "بريدة",
+      "أبها", "خميس مشيط", "حائل", "الهفوف", "الجبيل", "الطائف", "نجران", "جازان", "ينبع",
+      "القطيف", "عرعر", "سكاكا", "الخرج", "عنيزة", "دبي", "أبوظبي", "الكويت", "الدوحة", "المنامة", "مسقط"
+    ];
+
+    // قائمة الاشتراكات
+    const products = [
+      "فالكون برو سنة كاملة",
+      "فالكون برو 6 أشهر",
+      "فالكون برو 3 أشهر",
+      "فالكون برو شهر",
+      "سمارترز برو شاشتين — سنة + 3 أشهر",
+      "سمارترز برو شاشة — سنة",
+      "سمارترز برو 6 أشهر",
+      "هولك بلاير سنة كاملة",
+      "هولك بلاير 6 أشهر",
+      "هولك بلاير 3 أشهر"
+    ];
+
+    let usedCombinations = new Set();
+    let isClosedManually = false;
+
+    // توليد عملية شراء واقعية بدون تكرار
+    function generateUniquePurchase() {
+      let fName, city, combination;
+      let attempts = 0;
+
+      do {
+        fName = firstNames[Math.floor(Math.random() * firstNames.length)];
+        city = cities[Math.floor(Math.random() * cities.length)];
+        combination = `${fName}-${city}`;
+        attempts++;
+      } while (usedCombinations.has(combination) && attempts < 100);
+
+      usedCombinations.add(combination);
+      if (usedCombinations.size > 80) {
+        usedCombinations.clear();
+      }
+
+      const product = products[Math.floor(Math.random() * products.length)];
+      const minutesAgo = Math.floor(Math.random() * 25) + 2; // من دقيقتين حتى 27 دقيقة
+
+      return {
+        buyer: `${fName} من ${city}`,
+        action: `اشترك في ${product} · قبل ${minutesAgo} دقيقة`
+      };
+    }
+
+    function showNotification() {
+      if (isClosedManually) return;
+
+      const purchase = generateUniquePurchase();
+      buyerEl.textContent = purchase.buyer;
+      productEl.textContent = purchase.action;
+
+      toast.classList.add('is-visible');
+
+      // يختفي بعد 5 ثوانٍ
+      setTimeout(function() {
+        toast.classList.remove('is-visible');
+        scheduleNextNotification();
+      }, 5000);
+    }
+
+    function scheduleNextNotification() {
+      if (isClosedManually) return;
+      // توقيت عشوائي بين 25 ثانية و 55 ثانية
+      const nextDelay = Math.floor(Math.random() * (55000 - 25000 + 1)) + 25000;
+      setTimeout(showNotification, nextDelay);
+    }
+
+    // الظهور الأول بعد الدخول (بين 15 و 25 ثانية)
+    const initialDelay = Math.floor(Math.random() * (25000 - 15000 + 1)) + 15000;
+    setTimeout(showNotification, initialDelay);
+
+    // إغلاق الإشعار يدويًا
+    closeBtn.addEventListener('click', function() {
+      toast.classList.remove('is-visible');
+      isClosedManually = true;
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "إشعار المبيعات المباشر",
+  "tag": "section",
+  "class": "section-sales-popup",
+  "settings": [],
+  "presets": [
+    {
+      "name": "إشعار المبيعات المباشر"
+    }
+  ]
+}
+{% endschema %}

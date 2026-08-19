@@ -1,0 +1,121 @@
+.pfc-section {
+  direction: rtl;
+  background-color: #1a1a16;
+  padding: 30px 20px 60px;
+  color: #ffffff;
+  font-family: inherit;
+}
+
+.pfc-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* شبكة الصندوقين المزدوجة */
+.pfc-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* تصميم الصناديق المشترك */
+.pfc-card {
+  background-color: #242424;
+  border: 1px solid rgba(245, 166, 35, 0.35);
+  border-radius: 20px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pfc-card-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 20px;
+}
+
+/* قائمة مميزات الباقة (Rich Text) */
+.pfc-features-content {
+  color: #cccccc;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.pfc-features-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pfc-features-content li {
+  position: relative;
+  padding-right: 24px;
+  display: flex;
+  align-items: center;
+}
+
+/* علامة التأكيد الدائرية للمميزات */
+.pfc-features-content li::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid #f5a623;
+  background-color: rgba(245, 166, 35, 0.1);
+  box-sizing: border-box;
+}
+
+.pfc-features-content p {
+  margin: 0 0 10px;
+}
+
+/* كبسولات الأجهزة المتوافقة */
+.pfc-compatibility-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+.pfc-device-pill {
+  background-color: rgba(36, 36, 36, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: 25px;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.pfc-device-pill:hover {
+  border-color: #f5a623;
+  color: #f5a623;
+  background-color: rgba(245, 166, 35, 0.08);
+  transform: translateY(-2px);
+}
+
+/* التجاوب مع شاشات الهواتف والأجهزة اللوحية */
+@media (max-width: 900px) {
+  .pfc-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .pfc-card {
+    padding: 24px 20px;
+  }
+
+  .pfc-card-title {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,306 @@
+.pdp-section {
+  direction: rtl;
+  background-color: #1a1a16;
+  padding: 50px 20px;
+  color: #ffffff;
+  font-family: inherit;
+}
+
+.pdp-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* شبكة العرض الرئيسية */
+.pdp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* عمود الصورة وتأثير التوهج ومرور الضوء */
+.pdp-media-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid #2d2d2d;
+  background-color: #111111;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.pdp-media-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* شريط مرور الضوء المنعكس */
+.pdp-media-wrapper::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 3;
+  transition: none;
+}
+
+/* تأثير التوهج ومرور الضوء عند تحويم الماوس */
+.pdp-media-wrapper:hover {
+  transform: translateY(-4px);
+  border-color: #f5a623;
+  box-shadow: 0 0 30px rgba(245, 166, 35, 0.45);
+}
+
+.pdp-media-wrapper:hover::after {
+  opacity: 1;
+  left: 130%;
+  transition: left 0.75s ease-in-out;
+}
+
+/* شارة المنتج أعلى اليمين */
+.pdp-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: #f5a623;
+  color: #111111;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 20px;
+  z-index: 4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* شارة التجربة السريعة أسفل اليمين */
+.pdp-trial-tag {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background-color: rgba(30, 30, 30, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  z-index: 4;
+}
+
+/* عمود التفاصيل والبيانات */
+.pdp-details {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+/* التقييم وعدد المبيعات */
+.pdp-meta-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #a0a0a0;
+  margin-bottom: 12px;
+}
+
+.pdp-stars {
+  display: flex;
+  gap: 2px;
+  color: #f5a623;
+}
+
+.pdp-stars svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+.pdp-title {
+  font-size: 38px;
+  font-weight: 900;
+  margin: 0 0 14px;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.pdp-description {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #a0a0a0;
+  margin: 0 0 24px;
+}
+
+/* السعر والخصم */
+.pdp-pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.pdp-price-current {
+  font-size: 36px;
+  font-weight: 900;
+  color: #f5a623;
+}
+
+.pdp-price-compare {
+  font-size: 18px;
+  color: #777777;
+  text-decoration: line-through;
+}
+
+/* المبلغ الشهري المعادل */
+.pdp-monthly-amount {
+  font-size: 14px;
+  font-weight: 700;
+  color: #a0a0a0;
+  margin-top: 0;
+  margin-bottom: 18px;
+  letter-spacing: 0.2px;
+}
+
+/* شارة التوفر والتسليم */
+.pdp-availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  width: fit-content;
+  margin-bottom: 24px;
+}
+
+/* حالة متاح فوراً (أخضر) */
+.pdp-availability-badge.is-instant {
+  background-color: rgba(39, 174, 96, 0.15);
+  border: 1px solid rgba(39, 174, 96, 0.45);
+  color: #2ecc71;
+}
+
+/* باقي حالات التسليم (برتقالي) */
+.pdp-availability-badge.is-delayed {
+  background-color: rgba(245, 166, 35, 0.12);
+  border: 1px solid rgba(245, 166, 35, 0.4);
+  color: #f5a623;
+}
+
+.pdp-availability-badge svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* زر الاشتراك الرئيسي */
+.pdp-submit-btn {
+  width: 100%;
+  background-color: #f5a623;
+  color: #111111;
+  font-size: 18px;
+  font-weight: 900;
+  border: none;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(245, 166, 35, 0.35);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  margin-bottom: 24px;
+}
+
+.pdp-submit-btn:hover {
+  background-color: #ffb834;
+  transform: translateY(-2px);
+}
+
+.pdp-submit-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* شريط المميزات السفلي */
+.pdp-features-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 16px 10px;
+  gap: 10px;
+}
+
+.pdp-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #d1d1d1;
+}
+
+.pdp-feature-item img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.pdp-feature-item svg {
+  width: 18px;
+  height: 18px;
+  color: #f5a623;
+}
+
+/* التجاوب مع شاشات الجوال */
+@media (max-width: 900px) {
+  .pdp-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .pdp-media-wrapper {
+    max-width: 450px;
+    margin: 0 auto;
+  }
+
+  .pdp-title {
+    font-size: 26px;
+  }
+
+  .pdp-price-current {
+    font-size: 28px;
+  }
+
+  .pdp-features-bar {
+    flex-direction: row;
+    gap: 6px;
+    padding: 12px 6px;
+  }
+
+  .pdp-feature-item {
+    font-size: 11px;
+    gap: 4px;
+  }
+}

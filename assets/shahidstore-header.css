@@ -1,5 +1,5 @@
 :root {
-    --shahidstore-bg-dark: #222222;
+    --shahidstore-bg-dark: #2b2b2b;
     --shahidstore-card-bg: #1a1a1a;
     --shahidstore-gold: #e0ac00;
     --shahidstore-text: #ffffff;
@@ -91,7 +91,7 @@
 
 .shahidstore-categories-pills {
     display: flex;
-    gap: 12px;
+    gap: 30px;
     justify-content: center;
     overflow-x: auto;
     padding-bottom: 5px;
@@ -103,7 +103,7 @@
     gap: 8px;
     border: 1px solid var(--shahidstore-gold);
     border-radius: var(--shahidstore-border-radius);
-    padding: 6px 16px;
+    padding: 6px 20px;
     text-decoration: none;
     color: var(--shahidstore-text);
     white-space: nowrap;
@@ -124,7 +124,13 @@
     .shahidstore-desktop-header {
         display: none;
     }
+    .shahidstore-categories-pills {
+    gap: 5px;
+    }
 
+    body.shahidstore-template, body, .shahidstore-header-wrapper, .shahidstore-pages-menu a, .shahidstore-drawer, p, span, a, li, button, input, select, textarea {
+    font-size: 12px;
+}
     .shahidstore-mobile-header {
         display: flex;
         flex-direction: column;

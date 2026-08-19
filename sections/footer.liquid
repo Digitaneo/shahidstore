@@ -1,6 +1,96 @@
-<footer class="shahidstore-footer-wrapper" style="background-color: #1a1a1a; color: #888888; text-align: center; padding: 20px 10px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px;">
-  <div class="shahidstore-footer-content" style="max-width: 1200px; margin: 0 auto;">
-    <p style="margin: 0 0 8px 0; color: #cccccc;">&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. جميع الحقوق محفوظة.</p>
+{{ 'footer.css' | asset_url | stylesheet_tag }}
+
+<footer class="site-footer">
+  <div class="footer-container">
+
+    <!-- القسم العلوي -->
+    <div class="footer-top">
+      {% if section.settings.logo != blank %}
+        <div class="footer-logo">
+          <img src="{{ section.settings.logo | image_url: width: 140 }}" alt="{{ shop.name }}" loading="lazy">
+        </div>
+      {% endif %}
+
+      <p class="footer-description">{{ section.settings.description }}</p>
+
+      <div class="footer-badges">
+        {% if section.settings.badge1 != blank %}
+          <span class="footer-pill">{{ section.settings.badge1 }}</span>
+        {% endif %}
+        {% if section.settings.badge2 != blank %}
+          <span class="footer-pill">{{ section.settings.badge2 }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <!-- القسم الأوسط: القوائم -->
+    <div class="footer-middle">
+      <!-- القائمة الأولى: المساعدة -->
+      <div class="footer-column">
+        <h3 class="footer-column-title">{{ section.settings.col1_title }}</h3>
+        <ul class="footer-links">
+          {% for link in linklists[section.settings.menu1].links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% else %}
+            <li><a href="#">سياسة الاسترجاع</a></li>
+            <li><a href="#">من نحن</a></li>
+            <li><a href="#">التقييمات</a></li>
+            <li><a href="#">طريقة التفعيل</a></li>
+            <li><a href="#">تتبع الطلب</a></li>
+            <li><a href="#">تواصل معنا</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- القائمة الثانية: روابط سريعة -->
+      <div class="footer-column">
+        <h3 class="footer-column-title">{{ section.settings.col2_title }}</h3>
+        <ul class="footer-links">
+          {% for link in linklists[section.settings.menu2].links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% else %}
+            <li><a href="#">كل الباقات</a></li>
+            <li><a href="#">فالكون</a></li>
+            <li><a href="#">هولك</a></li>
+            <li><a href="#">سمارترز برو</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- قسم أزرار التواصل -->
+    <div class="footer-contact-cta">
+      <h3 class="footer-cta-title">{{ section.settings.cta_title }}</h3>
+      <div class="footer-buttons-group">
+        {% if section.settings.contact_link != blank %}
+          <a href="{{ section.settings.contact_link }}" class="footer-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>صفحة التواصل</span>
+          </a>
+        {% endif %}
+
+        {% if section.settings.telegram_link != blank %}
+          <a href="{{ section.settings.telegram_link }}" class="footer-btn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            <span>قناة تلجرام</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- الجزء السفلي -->
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. جميع الحقوق محفوظة.</p>
+    </div>
+
   </div>
 </footer>
 
@@ -10,8 +100,81 @@
   "enabled_on": {
     "groups": ["footer"]
   },
-  "limit": 1,
-  "settings": [],
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "شعار المتجر"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "وصف المتجر",
+      "default": "متجر متخصص في باقات الاشتراكات الرقمية بأسعار مناسبة ودعم متواصل."
+    },
+    {
+      "type": "text",
+      "id": "badge1",
+      "label": "الشارة الأولى",
+      "default": "15% VAT مشمولة"
+    },
+    {
+      "type": "text",
+      "id": "badge2",
+      "label": "الشارة الثانية",
+      "default": "دعم متواصل"
+    },
+    {
+      "type": "header",
+      "content": "القائمة الأولى (المساعدة)"
+    },
+    {
+      "type": "text",
+      "id": "col1_title",
+      "label": "عنوان العمود الأول",
+      "default": "المساعدة"
+    },
+    {
+      "type": "link_list",
+      "id": "menu1",
+      "label": "اختر القائمة"
+    },
+    {
+      "type": "header",
+      "content": "القائمة الثانية (روابط سريعة)"
+    },
+    {
+      "type": "text",
+      "id": "col2_title",
+      "label": "عنوان العمود الثاني",
+      "default": "روابط سريعة"
+    },
+    {
+      "type": "link_list",
+      "id": "menu2",
+      "label": "اختر القائمة"
+    },
+    {
+      "type": "header",
+      "content": "أزرار التواصل"
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "عنوان قسم التواصل",
+      "default": "تواصل معنا"
+    },
+    {
+      "type": "url",
+      "id": "contact_link",
+      "label": "رابط صفحة التواصل"
+    },
+    {
+      "type": "url",
+      "id": "telegram_link",
+      "label": "رابط قناة تلجرام"
+    }
+  ],
   "presets": [
     {
       "name": "Footer"

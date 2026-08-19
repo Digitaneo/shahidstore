@@ -1,0 +1,166 @@
+.ag-section {
+  direction: rtl;
+  padding: 60px 20px;
+  background-color: transparent;
+  color: #ffffff;
+  font-family: inherit;
+  text-align: center;
+}
+
+.ag-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* عناوين القسم */
+.ag-header {
+  margin-bottom: 40px;
+}
+
+.ag-title {
+  font-size: 32px;
+  font-weight: 900;
+  margin: 0 0 10px;
+  color: #ffffff;
+}
+
+.ag-subtitle {
+  font-size: 15px;
+  color: #a0a0a0;
+  margin: 0;
+}
+
+/* شبكة الأجهزة */
+.ag-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 35px;
+}
+
+/* بطاقة كل جهاز */
+.ag-card {
+  width: 125px;
+  height: 125px;
+  background-color: rgba(36, 36, 36, 0.7);
+  border: 1px solid rgba(245, 166, 35, 0.35);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  gap: 12px;
+  backdrop-filter: blur(8px);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.ag-card:hover {
+  transform: translateY(-4px);
+  border-color: #f5a623;
+  background-color: rgba(45, 45, 45, 0.9);
+  box-shadow: 0 0 18px rgba(245, 166, 35, 0.3);
+}
+
+.ag-icon {
+  width: 32px;
+  height: 32px;
+  color: #f5a623;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ag-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ag-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* زر دليل التشغيل الكامل */
+.ag-btn-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.ag-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 32px;
+  background-color: rgba(36, 36, 36, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+
+.ag-btn:hover {
+  background-color: #2e2e2e;
+  border-color: rgba(245, 166, 35, 0.5);
+  transform: translateY(-2px);
+}
+
+.ag-btn svg {
+  width: 18px;
+  height: 18px;
+  color: #ffffff;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+
+.guide-badge-top {
+  border: 1px solid #ffcd14 !important;
+}
+
+
+
+/* التجاوب مع شاشات الهواتف والأجهزة اللوحية */
+@media (max-width: 768px) {
+  .ag-title {
+    font-size: 24px;
+  }
+  .ag-subtitle {
+    font-size: 13px;
+  }
+  .ag-grid {
+    gap: 10px;
+  }
+  .ag-card {
+    width: calc(33.33% - 10px);
+    height: 105px;
+    border-radius: 16px;
+  }
+  .ag-icon {
+    width: 26px;
+    height: 26px;
+  }
+  .ag-name {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .ag-card {
+    width: calc(50% - 10px);
+    height: 110px;
+  }
+}

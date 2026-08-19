@@ -1,0 +1,337 @@
+.mc-section {
+  direction: rtl;
+  background-color: #1a1a16;
+  padding: 40px 20px 80px;
+  color: #ffffff;
+  font-family: inherit;
+  min-height: 80vh;
+}
+
+.mc-container {
+  max-width: 1350px;
+  margin: 0 auto;
+}
+
+.mc-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* الشريط الجانبي */
+.mc-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 20px;
+}
+
+.mc-sidebar-card {
+  background-color: #242424;
+  border: 1px solid rgba(245, 166, 35, 0.35);
+  border-radius: 20px;
+  padding: 22px 18px;
+}
+
+.mc-sidebar-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 16px;
+  text-align: right;
+}
+
+/* صندوق البحث المباشر */
+.mc-search-form {
+  position: relative;
+  width: 100%;
+}
+
+.mc-search-input {
+  width: 100%;
+  background-color: #1a1a16;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px 14px 12px 38px;
+  color: #ffffff;
+  font-size: 13px;
+  outline: none;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+  text-align: right;
+}
+
+.mc-search-input:focus {
+  border-color: #f5a623;
+}
+
+.mc-search-btn {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #777777;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.mc-search-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* قائمة التصنيفات */
+.mc-categories-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mc-category-link {
+  display: block;
+  padding: 10px 14px;
+  color: #a0a0a0;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  text-align: right;
+}
+
+.mc-category-link:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.mc-category-link.is-active {
+  background-color: #1a1a16;
+  color: #2b2b2b;
+  border-right: 3px solid #f5a623;
+}
+
+/* قائمة الترتيب المنسدلة */
+.mc-sort-select {
+  width: 100%;
+  background-color: #1a1a16;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: #ffffff;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+  direction: rtl;
+}
+
+.mc-sort-select:focus {
+  border-color: #f5a623;
+}
+
+/* قسم عرض المنتجات */
+.mc-main-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.mc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.mc-card {
+  background-color: #242424;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.mc-card.is-hidden {
+  display: none !important;
+}
+
+.mc-card:hover {
+  transform: translateY(-6px);
+  border-color: #f5a623;
+  box-shadow: 0 0 24px rgba(245, 166, 35, 0.4);
+}
+
+.mc-image-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: #111111;
+}
+
+.mc-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mc-image-box::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  pointer-events: none;
+  opacity: 0;
+  transition: none;
+}
+
+.mc-card:hover .mc-image-box::after {
+  opacity: 1;
+  left: 130%;
+  transition: left 0.75s ease-in-out;
+}
+
+.mc-badge-right {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #f5a623;
+  color: #111111;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 20px;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.mc-badge-left {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: #f5a623;
+  color: #111111;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 20px;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.mc-body {
+  padding: 18px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.mc-product-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 10px;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mc-orders-count {
+  font-size: 12px;
+  color: #f5a623;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mc-pricing {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.mc-price-current {
+  font-size: 22px;
+  font-weight: 900;
+  color: #f5a623;
+}
+
+.mc-price-compare {
+  font-size: 14px;
+  color: #777777;
+  text-decoration: line-through;
+}
+
+.mc-btn {
+  background-color: #f5a623;
+  color: #111111;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  width: 100%;
+  padding: 11px 0;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+  display: block;
+}
+
+.mc-btn:hover {
+  background-color: #ffb834;
+}
+
+.mc-no-results {
+  display: none;
+  text-align: center;
+  grid-column: 1 / -1;
+  color: #a0a0a0;
+  padding: 50px 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+@media (max-width: 1080px) {
+  .mc-layout {
+    grid-template-columns: 1fr;
+  }
+  .mc-sidebar {
+    position: static;
+  }
+  .mc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .mc-grid {
+    grid-template-columns: 1fr;
+  }
+}

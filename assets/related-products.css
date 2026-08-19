@@ -1,0 +1,200 @@
+.rp-section {
+  direction: rtl;
+  background-color: #1a1a16;
+  padding: 40px 20px 70px;
+  color: #ffffff;
+  font-family: inherit;
+}
+
+.rp-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.rp-header {
+  margin-bottom: 28px;
+  text-align: right;
+}
+
+.rp-title {
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0;
+  color: #ffffff;
+}
+
+/* شبكة المنتجات (4 أعمدة) */
+.rp-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* بطاقة المنتج */
+.rp-card {
+  background-color: #242424;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* تأثير التوهج عند تحويم الماوس */
+.rp-card:hover {
+  transform: translateY(-6px);
+  border-color: #f5a623;
+  box-shadow: 0 0 24px rgba(245, 166, 35, 0.4);
+}
+
+/* وعاء الصورة */
+.rp-image-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: #111111;
+}
+
+.rp-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* تأثير مرور الضوء وانعكاسه */
+.rp-image-box::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  pointer-events: none;
+  opacity: 0;
+  transition: none;
+}
+
+.rp-card:hover .rp-image-box::after {
+  opacity: 1;
+  left: 130%;
+  transition: left 0.75s ease-in-out;
+}
+
+/* الشارة من الـ Metafield */
+.rp-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #f5a623;
+  color: #111111;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 20px;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* جسم البطاقة */
+.rp-body {
+  padding: 18px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.rp-product-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 10px;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rp-orders-count {
+  font-size: 12px;
+  color: #f5a623;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rp-pricing {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.rp-price-current {
+  font-size: 22px;
+  font-weight: 900;
+  color: #f5a623;
+}
+
+.rp-price-compare {
+  font-size: 14px;
+  color: #777777;
+  text-decoration: line-through;
+}
+
+.rp-btn {
+  background-color: #f5a623;
+  color: #111111;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  width: 100%;
+  padding: 11px 0;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+  display: block;
+}
+
+.rp-btn:hover {
+  background-color: #ffb834;
+}
+
+/* التجاوب مع الشاشات الصغيرة والمتوسطة */
+@media (max-width: 1024px) {
+  .rp-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 580px) {
+  .rp-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .rp-card {
+    border-radius: 16px;
+  }
+  .rp-body {
+    padding: 14px 12px 16px;
+  }
+  .rp-product-title {
+    font-size: 14px;
+    min-height: auto;
+  }
+}

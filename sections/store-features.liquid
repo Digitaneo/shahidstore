@@ -1,0 +1,235 @@
+{%- style -%}
+  .store-features-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    border-top: 1px solid {{ section.settings.border_color }};
+    border-bottom: 1px solid {{ section.settings.border_color }};
+    direction: rtl;
+    width: 100%;
+  }
+
+  .store-features__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .store-features__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .store-features__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .store-features__icon-wrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid {{ section.settings.accent_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: {{ section.settings.accent_color }};
+  }
+
+  .store-features__icon-wrapper svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .store-features__title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    color: {{ section.settings.text_color }};
+    white-space: nowrap;
+  }
+
+  /* الاستجابة مع الهواتف الذكية */
+  @media screen and (max-width: 768px) {
+    .store-features__list {
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .store-features__item {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+{%- endstyle -%}
+
+<div class="store-features-{{ section.id }}">
+  <div class="store-features__container">
+    <div class="store-features__list">
+      {% for block in section.blocks %}
+        <div class="store-features__item" {{ block.shopify_attributes }}>
+          <div class="store-features__icon-wrapper">
+            {% case block.settings.icon %}
+              {% when 'lightning' %}
+                <svg viewBox="0 0 24 24">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+              {% when 'film' %}
+                <svg viewBox="0 0 24 24">
+                  <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                  <line x1="7" y1="2" x2="7" y2="22"></line>
+                  <line x1="17" y1="2" x2="17" y2="22"></line>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <line x1="2" y1="7" x2="7" y2="7"></line>
+                  <line x1="2" y1="17" x2="7" y2="17"></line>
+                  <line x1="17" y1="17" x2="22" y2="17"></line>
+                  <line x1="17" y1="7" x2="22" y2="7"></line>
+                </svg>
+              {% when 'headphones' %}
+                <svg viewBox="0 0 24 24">
+                  <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                  <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                </svg>
+              {% when 'custom_image' %}
+                {% if block.settings.custom_image != blank %}
+                  <img src="{{ block.settings.custom_image | image_url: width: 44 }}" alt="{{ block.settings.title }}" width="22" height="22" loading="lazy">
+                {% endif %}
+            {% endcase %}
+          </div>
+          <h3 class="store-features__title">{{ block.settings.title }}</h3>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "مزايا المتجر",
+  "tag": "section",
+  "class": "section-store-features",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "لون الخلفية",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "لون النص",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "لون الأيقونات والحدود",
+      "default": "#D4AF37"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "لون الحدود العلوية والسفلية",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "الهامش العلوي",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "الهامش السفلي",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "مزيّة",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "العنوان",
+          "default": "تفعيل سريع"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "الأيقونة",
+          "options": [
+            { "value": "lightning", "label": "برق / تفعيل سريع" },
+            { "value": "film", "label": "شريط سينما / 4K" },
+            { "value": "headphones", "label": "سماعات / دعم فني" },
+            { "value": "custom_image", "label": "صورة مخصصة" }
+          ],
+          "default": "lightning"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "صورة أيقونة مخصصة"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "مزايا المتجر",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "تفعيل سريع",
+            "icon": "lightning"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "جودة 4K حقيقية",
+            "icon": "film"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "دعم فني متواصل",
+            "icon": "headphones"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,221 @@
+.contact-section {
+  direction: rtl;
+  background-color: #1a1a16;
+  padding: 60px 20px 90px;
+  color: #ffffff;
+  font-family: inherit;
+}
+
+.contact-container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* الرأس العلوي */
+.contact-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.contact-title {
+  font-size: 36px;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0 0 10px;
+}
+
+.contact-subtitle {
+  font-size: 14px;
+  color: #a0a0a0;
+  margin: 0;
+}
+
+/* بطاقة قناة تلجرام العلوية */
+.contact-tg-card {
+  background-color: #242424;
+  border: 1px solid rgba(245, 166, 35, 0.35);
+  border-radius: 20px;
+  padding: 18px 26px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  text-decoration: none;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-tg-card:hover {
+  transform: translateY(-2px);
+  border-color: #f5a623;
+  box-shadow: 0 0 20px rgba(245, 166, 35, 0.25);
+}
+
+.contact-tg-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.contact-tg-label {
+  font-size: 11px;
+  color: #888888;
+}
+
+.contact-tg-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.contact-tg-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2aabee, #229ed9);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-tg-icon svg {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+  transform: translateX(-1px) rotate(-10deg);
+}
+
+/* صندوق النموذج الرئيسي */
+.contact-card {
+  background-color: #242424;
+  border: 1px solid rgba(245, 166, 35, 0.35);
+  border-radius: 20px;
+  padding: 36px 32px;
+}
+
+.contact-form-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 26px;
+  text-align: right;
+}
+
+/* بنية الحقول */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: right;
+}
+
+.contact-field label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.contact-input,
+.contact-textarea {
+  background-color: #1a1a16;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #ffffff;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-input::placeholder,
+.contact-textarea::placeholder {
+  color: #666666;
+  font-size: 13px;
+}
+
+.contact-input:focus,
+.contact-textarea:focus {
+  border-color: #f5a623;
+  box-shadow: 0 0 10px rgba(245, 166, 35, 0.2);
+}
+
+.contact-textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+/* زر الإرسال */
+.contact-submit-btn {
+  background-color: #2e2e2a;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 14px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.25s ease;
+  margin-top: 6px;
+}
+
+.contact-submit-btn:hover {
+  background-color: #f5a623;
+  color: #111111;
+  border-color: #f5a623;
+  box-shadow: 0 4px 15px rgba(245, 166, 35, 0.3);
+}
+
+/* رسائل النجاح والخطأ */
+.contact-feedback {
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+.contact-feedback.success {
+  background-color: rgba(39, 174, 96, 0.15);
+  border: 1px solid #27ae60;
+  color: #2ecc71;
+}
+
+.contact-feedback.error {
+  background-color: rgba(231, 76, 60, 0.15);
+  border: 1px solid #e74c3c;
+  color: #e74c3c;
+}
+
+/* التجاوب مع شاشات الجوال */
+@media (max-width: 650px) {
+  .contact-section {
+    padding: 40px 16px 60px;
+  }
+  .contact-card {
+    padding: 24px 18px;
+  }
+  .contact-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .contact-title {
+    font-size: 28px;
+  }
+}

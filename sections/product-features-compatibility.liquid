@@ -1,0 +1,87 @@
+{{ 'product-features-compatibility.css' | asset_url | stylesheet_tag }}
+
+{% assign package_features = product.metafields.custom['Package-Features'] %}
+{% assign compatible_devices = product.metafields.custom['Compatible-devices'].value | default: product.metafields.custom['Compatible-devices'] %}
+
+{% if package_features != blank or compatible_devices != blank %}
+<section class="pfc-section">
+  <div class="pfc-container">
+    <div class="pfc-grid">
+
+      <!-- الجزء الأيمن: مميزات الباقة -->
+      <div class="pfc-card pfc-features-box">
+        <h3 class="pfc-card-title">{{ section.settings.features_title }}</h3>
+        
+        <div class="pfc-features-content">
+          {% if package_features != blank %}
+            {{ package_features | metafield_tag }}
+          {% else %}
+            <ul>
+              <li>آلاف القنوات والأفلام والمسلسلات في باقة واحدة</li>
+              <li>جودة بث تصل إلى 4K Ultra HD</li>
+              <li>قنوات رياضية ومباريات كأس العالم للمنتخبات</li>
+              <li>قنوات أفلام، مسلسلات، وثائقية، وأطفال</li>
+              <li>قوائم EPG ودليل برامج محدّث</li>
+              <li>تفعيل سريع خلال دقائق بعد الدفع</li>
+              <li>دعم فني عربي طوال فترة الاشتراك</li>
+              <li>تجربة مثالية لتجربة الخدمة قبل الالتزام السنوي</li>
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- الجزء الأيسر: الأجهزة المتوافقة -->
+      <div class="pfc-card pfc-compatibility-box">
+        <h3 class="pfc-card-title">{{ section.settings.compatibility_title }}</h3>
+        
+        <div class="pfc-compatibility-list">
+          {% if compatible_devices != blank %}
+            {% for device in compatible_devices %}
+              <div class="pfc-device-pill">
+                {{ device.compatible_devices.value | default: device.compatible_devices }}
+              </div>
+            {% endfor %}
+          {% else %}
+            <span class="pfc-device-pill">Smart TV</span>
+            <span class="pfc-device-pill">Android</span>
+            <span class="pfc-device-pill">iOS</span>
+            <span class="pfc-device-pill">Windows</span>
+            <span class="pfc-device-pill">Mac</span>
+            <span class="pfc-device-pill">Fire Stick</span>
+            <span class="pfc-device-pill">Apple TV</span>
+            <span class="pfc-device-pill">MAG</span>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "المميزات والتوافق",
+  "tag": "section",
+  "class": "section-product-features-compatibility",
+  "settings": [
+    {
+      "type": "text",
+      "id": "features_title",
+      "label": "عنوان قسم المميزات",
+      "default": "مميزات الباقة"
+    },
+    {
+      "type": "text",
+      "id": "compatibility_title",
+      "label": "عنوان قسم التوافق",
+      "default": "التوافق"
+    }
+  ],
+  "presets": [
+    {
+      "name": "المميزات والتوافق"
+    }
+  ]
+}
+{% endschema %}

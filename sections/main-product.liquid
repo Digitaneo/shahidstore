@@ -1,0 +1,216 @@
+{{ 'main-product.css' | asset_url | stylesheet_tag }}
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign availability_val = product.metafields.custom.Availability.value | default: product.metafields.custom.Availability %}
+{% assign badge_val = product.metafields.custom['Product-badge'].value | default: product.metafields.custom['Product-badge'] %}
+{% assign monthly_amount_val = product.metafields.custom['monthly-amount'].value | default: product.metafields.custom['monthly-amount'] %}
+
+<section class="pdp-section">
+  <div class="pdp-container">
+    <div class="pdp-grid">
+
+      <!-- عمود الصورة -->
+      <div class="pdp-media-wrapper">
+        {% if badge_val != blank %}
+          <div class="pdp-badge">{{ badge_val }}</div>
+        {% endif %}
+
+        {% if product.featured_image != blank %}
+          <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.title | escape }}" loading="eager">
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {% endif %}
+
+        {% if section.settings.trial_badge_text != blank %}
+          <div class="pdp-trial-tag">{{ section.settings.trial_badge_text }}</div>
+        {% endif %}
+      </div>
+
+      <!-- عمود التفاصيل والطلب -->
+      <div class="pdp-details">
+        
+        <!-- التقييم والمبيعات -->
+        <div class="pdp-meta-rating">
+          <div class="pdp-stars">
+            {% for i in (1..5) %}
+              <svg viewBox="0 0 24 24">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            {% endfor %}
+          </div>
+          <span>5 • {{ section.settings.sales_count }}</span>
+        </div>
+
+        <h1 class="pdp-title">{{ product.title }}</h1>
+
+        <div class="pdp-description">
+          {{ product.description }}
+        </div>
+
+        <!-- السعر -->
+        <div class="pdp-pricing">
+          <span class="pdp-price-current">{{ current_variant.price | money }}</span>
+          {% if current_variant.compare_at_price > current_variant.price %}
+            <span class="pdp-price-compare">{{ current_variant.compare_at_price | money }}</span>
+          {% endif %}
+        </div>
+
+        <!-- المبلغ الشهري المعادل -->
+        {% if monthly_amount_val != blank %}
+          <div class="pdp-monthly-amount">
+            {{ monthly_amount_val }}
+          </div>
+        {% endif %}
+
+        <!-- التوفر والتسليم من Metafield -->
+        {% if availability_val != blank %}
+          {% assign is_instant = false %}
+          {% if availability_val contains 'متاح فوراً' %}
+            {% assign is_instant = true %}
+          {% endif %}
+
+          <div class="pdp-availability-badge {% if is_instant %}is-instant{% else %}is-delayed{% endif %}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>{{ availability_val }}</span>
+          </div>
+        {% endif %}
+
+        <!-- نموذج الشراء -->
+        {% form 'product', product %}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+          <button type="submit" name="add" class="pdp-submit-btn" {% unless current_variant.available %}disabled{% endunless %}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span>
+              {% if current_variant.available %}
+                {{ section.settings.button_text }}
+              {% else %}
+                نفدت الكمية
+              {% endif %}
+            </span>
+          </button>
+        {% endform %}
+
+        <!-- مميزات المنتج السريعة -->
+        <div class="pdp-features-bar">
+          <!-- ميزة 1 -->
+          <div class="pdp-feature-item">
+            {% if section.settings.feat1_icon != blank %}
+              <img src="{{ section.settings.feat1_icon | image_url: width: 36 }}" alt="{{ section.settings.feat1_text }}">
+            {% else %}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            {% endif %}
+            <span>{{ section.settings.feat1_text }}</span>
+          </div>
+
+          <!-- ميزة 2 -->
+          <div class="pdp-feature-item">
+            {% if section.settings.feat2_icon != blank %}
+              <img src="{{ section.settings.feat2_icon | image_url: width: 36 }}" alt="{{ section.settings.feat2_text }}">
+            {% else %}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            {% endif %}
+            <span>{{ section.settings.feat2_text }}</span>
+          </div>
+
+          <!-- ميزة 3 -->
+          <div class="pdp-feature-item">
+            {% if section.settings.feat3_icon != blank %}
+              <img src="{{ section.settings.feat3_icon | image_url: width: 36 }}" alt="{{ section.settings.feat3_text }}">
+            {% else %}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+              </svg>
+            {% endif %}
+            <span>{{ section.settings.feat3_text }}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "تفاصيل المنتج الرئيسي",
+  "tag": "section",
+  "class": "section-main-product",
+  "settings": [
+    {
+      "type": "text",
+      "id": "sales_count",
+      "label": "نص عدد المبيعات",
+      "default": "1,100 عملية بيع"
+    },
+    {
+      "type": "text",
+      "id": "trial_badge_text",
+      "label": "شارة أسفل الصورة",
+      "default": "تجربة سريعة"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "نص زر الشراء",
+      "default": "اشترك الآن"
+    },
+    {
+      "type": "header",
+      "content": "الميزة 1"
+    },
+    {
+      "type": "text",
+      "id": "feat1_text",
+      "label": "النص",
+      "default": "تفعيل سريع"
+    },
+    {
+      "type": "image_picker",
+      "id": "feat1_icon",
+      "label": "أيقونة مخصصة"
+    },
+    {
+      "type": "header",
+      "content": "الميزة 2"
+    },
+    {
+      "type": "text",
+      "id": "feat2_text",
+      "label": "النص",
+      "default": "ضمان استبدال"
+    },
+    {
+      "type": "image_picker",
+      "id": "feat2_icon",
+      "label": "أيقونة مخصصة"
+    },
+    {
+      "type": "header",
+      "content": "الميزة 3"
+    },
+    {
+      "type": "text",
+      "id": "feat3_text",
+      "label": "النص",
+      "default": "دعم متواصل"
+    },
+    {
+      "type": "image_picker",
+      "id": "feat3_icon",
+      "label": "أيقونة مخصصة"
+    }
+  ]
+}
+{% endschema %}

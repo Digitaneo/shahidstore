@@ -1,0 +1,125 @@
+{{ 'featured-collection.css' | asset_url | stylesheet_tag }}
+
+<section class="fc-section">
+  <div class="fc-container">
+    <div class="fc-header">
+      <div class="fc-header-right">
+        {% if section.settings.brand_logo != blank %}
+          <div class="fc-brand-logo">
+            <img src="{{ section.settings.brand_logo | image_url: width: 160 }}" alt="Brand Logo" loading="lazy">
+          </div>
+        {% endif %}
+        <div class="fc-title-group">
+          {% if section.settings.heading != blank %}
+            <h2>{{ section.settings.heading }}</h2>
+          {% endif %}
+          {% if section.settings.subheading != blank %}
+            <p>{{ section.settings.subheading }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="fc-grid">
+      {% assign target_collection = collections[section.settings.collection] %}
+      {% for product in target_collection.products %}
+        <div class="fc-card">
+          <div class="fc-image-box">
+            {% if product.metafields.custom['Product-badge'] != blank %}
+                <span class="fc-badge">{{ product.metafields.custom['Product-badge'] }}</span>
+            {% endif %}
+
+
+            {% if product.featured_image != blank %}
+              <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title | escape }}" loading="lazy">
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag }}
+            {% endif %}
+          </div>
+
+          <div class="fc-body">
+            <h3 class="fc-product-title">{{ product.title }}</h3>
+
+            <div class="fc-orders-count">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span>{{ forloop.index | times: 320 | plus: 180 }} مشتري</span>
+            </div>
+
+            <div class="fc-pricing">
+              <span class="fc-price-current">{{ product.price | money }}</span>
+              {% if product.compare_at_price > product.price %}
+                <span class="fc-price-compare">{{ product.compare_at_price | money }}</span>
+              {% endif %}
+            </div>
+
+            <a href="{{ product.url }}" class="fc-btn">
+              {{ section.settings.button_text }}
+            </a>
+          </div>
+        </div>
+      {% else %}
+        {% for i in (1..5) %}
+          <div class="fc-card">
+            <div class="fc-image-box">
+              {{ 'product-' | append: i | placeholder_svg_tag }}
+            </div>
+            <div class="fc-body">
+              <h3 class="fc-product-title">منتج تجريبي {{ i }}</h3>
+              <div class="fc-pricing">
+                <span class="fc-price-current">100 ر.س</span>
+              </div>
+              <a href="#" class="fc-btn">اشترك الآن</a>
+            </div>
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "شبكة تصنيف المنتجات",
+  "tag": "section",
+  "class": "section-featured-collection",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "brand_logo",
+      "label": "شعار العلامة التجارية (يمين العنوان)"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "عنوان القسم",
+      "default": "اشتراك فالكون برو الرسمي"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "الوصف الفرعي",
+      "default": "آلاف القنوات والأفلام بجودة 4K"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "التصنيف المستهدف"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "نص الزر",
+      "default": "اشترك الآن"
+    }
+  ],
+  "presets": [
+    {
+      "name": "شبكة تصنيف المنتجات"
+    }
+  ]
+}
+{% endschema %}

@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 {% schema %}
 {
-  "name": "Slideshow",
+  "name": "عرض الشرائح (Slideshow)",
   "disabled_on": {
     "groups": ["header", "footer"]
   },
@@ -159,52 +159,52 @@ document.addEventListener('DOMContentLoaded', function() {
       "max": 9,
       "step": 1,
       "unit": "s",
-      "label": "Autoplay speed",
+      "label": "سرعة التبديل التلقائي (بالثواني)",
       "default": 5
     }
   ],
   "blocks": [
     {
       "type": "slide",
-      "name": "Slide",
+      "name": "شريحة (Slide)",
       "settings": [
         {
           "type": "image_picker",
           "id": "desktop_image",
-          "label": "Desktop image (1920x600)"
+          "label": "صورة الشاشة الكبيرة (Desktop - 1920x600)"
         },
         {
           "type": "image_picker",
           "id": "mobile_image",
-          "label": "Mobile image (750x450)"
+          "label": "صورة الجوال (Mobile - 750x450)"
         },
         {
           "type": "textarea",
           "id": "title",
-          "label": "Title",
-          "default": "Subscribe now"
+          "label": "العنوان الرئيسي للشريحة",
+          "default": "اشترك الآن واستمتع دون توقف"
         },
         {
           "type": "text",
           "id": "button_text",
-          "label": "Button text",
-          "default": "Subscribe"
+          "label": "نص الزر",
+          "default": "اشترك الآن"
         },
         {
           "type": "url",
           "id": "button_link",
-          "label": "Button link"
+          "label": "رابط الزر"
         },
         {
           "type": "color",
           "id": "button_bg_color",
-          "label": "Button color",
+          "label": "لون خلفية الزر",
           "default": "#e0ac00"
         },
         {
           "type": "color",
           "id": "button_text_color",
-          "label": "Button text color",
+          "label": "لون نص الزر",
           "default": "#000000"
         },
         {
@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
           "max": 50,
           "step": 1,
           "unit": "px",
-          "label": "Button border radius",
+          "label": "انحناء زوايا الزر (px)",
           "default": 25
         }
       ]
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
   "max_blocks": 6,
   "presets": [
     {
-      "name": "Slideshow",
+      "name": "عرض الشرائح (Slideshow)",
       "blocks": [
         {
           "type": "slide"
