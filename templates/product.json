@@ -1,1 +1,46 @@
-{"sections":{"main":{"type":"main-product","settings":{"sales_count":"1,100 عملية بيع","trial_badge_text":"تجربة سريعة","button_text":"اشترك الآن","feat1_text":"تفعيل سريع","feat2_text":"ضمان استبدال","feat3_text":"دعم متواصل"}},"product_features_compatibility_MmEmeF":{"type":"product-features-compatibility","name":"المميزات والتوافق","settings":{"features_title":"مميزات الباقة","compatibility_title":"التوافق"}},"related_products_7XDHmg":{"type":"related-products","name":"باقات مشابهة","settings":{"heading":"باقات مشابهة","collection":"","button_text":"اشترك الآن"}}},"order":["main","product_features_compatibility_MmEmeF","related_products_7XDHmg"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "sales_count": "1,100 عملية بيع",
+        "trial_badge_text": "تجربة سريعة",
+        "button_text": "اشترك الآن",
+        "feat1_text": "تفعيل سريع",
+        "feat2_text": "ضمان استبدال",
+        "feat3_text": "دعم متواصل"
+      }
+    },
+    "product_features_compatibility_MmEmeF": {
+      "type": "product-features-compatibility",
+      "name": "المميزات والتوافق",
+      "settings": {
+        "features_title": "مميزات الباقة",
+        "compatibility_title": "التوافق"
+      }
+    },
+    "related_products_7XDHmg": {
+      "type": "related-products",
+      "name": "باقات مشابهة",
+      "settings": {
+        "heading": "باقات مشابهة",
+        "collection": "",
+        "button_text": "اشترك الآن"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product_features_compatibility_MmEmeF",
+    "related_products_7XDHmg"
+  ]
+}
