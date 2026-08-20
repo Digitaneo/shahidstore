@@ -23,7 +23,7 @@
 .testimonials-pill {
   background-color: rgba(245, 166, 35, 0.1);
   border: 1px solid rgba(245, 166, 35, 0.35);
-  color: #f5a623;
+  color: #e6ad00;
   font-size: 12px;
   font-weight: 700;
   padding: 6px 18px;
@@ -34,7 +34,7 @@
 .testimonials-stars-main {
   display: flex;
   gap: 4px;
-  color: #f5a623;
+  color: #e6ad00;
   margin-bottom: 12px;
 }
 
@@ -79,14 +79,14 @@
 
 .testimonial-card:hover {
   transform: translateY(-4px);
-  border-color: #f5a623;
+  border-color: #e6ad00;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
 .testimonial-stars {
   display: flex;
   gap: 3px;
-  color: #f5a623;
+  color: #e6ad00;
   margin-bottom: 14px;
 }
 
@@ -137,7 +137,7 @@
   height: 34px;
   border-radius: 50%;
   background-color: rgba(245, 166, 35, 0.15);
-  color: #f5a623;
+  color: #e6ad00;
   display: flex;
   align-items: center;
   justify-content: center;

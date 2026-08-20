@@ -46,7 +46,7 @@
 .footer-pill {
   background-color: rgba(36, 36, 36, 0.8);
   border: 1px solid rgba(245, 166, 35, 0.4);
-  color: #f5a623;
+  color: #e6ad00;
   font-size: 12px;
   font-weight: 700;
   padding: 6px 18px;
@@ -74,7 +74,7 @@
 }
 
 .footer-column-title {
-  color: #f5a623;
+  color: #e6ad00;
   font-size: 16px;
   font-weight: 800;
   margin: 0 0 20px;
@@ -111,7 +111,7 @@
 }
 
 .footer-cta-title {
-  color: #f5a623;
+  color: #e6ad00;
   font-size: 16px;
   font-weight: 800;
   margin-bottom: 16px;
@@ -142,13 +142,13 @@
 .footer-btn svg {
   width: 17px;
   height: 17px;
-  color: #f5a623;
+  color: #e6ad00;
 }
 
 .footer-btn:hover {
-  background-color: #f5a623;
+  background-color: #e6ad00;
   color: #111111;
-  border-color: #f5a623;
+  border-color: #e6ad00;
   transform: translateY(-3px);
   box-shadow: 0 4px 15px rgba(245, 166, 35, 0.3);
 }

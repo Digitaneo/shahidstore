@@ -63,7 +63,7 @@
 /* تأثير التوهج ومرور الضوء عند تحويم الماوس */
 .pdp-media-wrapper:hover {
   transform: translateY(-4px);
-  border-color: #f5a623;
+  border-color: #e6ad00;
   box-shadow: 0 0 30px rgba(245, 166, 35, 0.45);
 }
 
@@ -78,7 +78,7 @@
   position: absolute;
   top: 16px;
   right: 16px;
-  background-color: #f5a623;
+  background-color: #e6ad00;
   color: #111111;
   font-size: 13px;
   font-weight: 800;
@@ -124,7 +124,7 @@
 .pdp-stars {
   display: flex;
   gap: 2px;
-  color: #f5a623;
+  color: #e6ad00;
 }
 
 .pdp-stars svg {
@@ -159,7 +159,7 @@
 .pdp-price-current {
   font-size: 36px;
   font-weight: 900;
-  color: #f5a623;
+  color: #e6ad00;
 }
 
 .pdp-price-compare {
@@ -202,7 +202,7 @@
 .pdp-availability-badge.is-delayed {
   background-color: rgba(245, 166, 35, 0.12);
   border: 1px solid rgba(245, 166, 35, 0.4);
-  color: #f5a623;
+  color: #e6ad00;
 }
 
 .pdp-availability-badge svg {
@@ -213,7 +213,7 @@
 /* زر الاشتراك الرئيسي */
 .pdp-submit-btn {
   width: 100%;
-  background-color: #f5a623;
+  background-color: #e6ad00;
   color: #111111;
   font-size: 18px;
   font-weight: 900;
@@ -270,7 +270,7 @@
 .pdp-feature-item svg {
   width: 18px;
   height: 18px;
-  color: #f5a623;
+  color: #e6ad00;
 }
 
 /* التجاوب مع شاشات الجوال */

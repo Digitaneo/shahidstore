@@ -65,7 +65,7 @@
 }
 
 .mc-search-input:focus {
-  border-color: #f5a623;
+  border-color: #e6ad00;
 }
 
 .mc-search-btn {
@@ -117,7 +117,7 @@
 .mc-category-link.is-active {
   background-color: #1a1a16;
   color: #2b2b2b;
-  border-right: 3px solid #f5a623;
+  border-right: 3px solid #e6ad00;
 }
 
 /* قائمة الترتيب المنسدلة */
@@ -137,7 +137,7 @@
 }
 
 .mc-sort-select:focus {
-  border-color: #f5a623;
+  border-color: #e6ad00;
 }
 
 /* قسم عرض المنتجات */
@@ -171,7 +171,7 @@
 
 .mc-card:hover {
   transform: translateY(-6px);
-  border-color: #f5a623;
+  border-color: #e6ad00;
   box-shadow: 0 0 24px rgba(245, 166, 35, 0.4);
 }
 
@@ -223,7 +223,7 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  background-color: #f5a623;
+  background-color: #e6ad00;
   color: #111111;
   font-size: 11px;
   font-weight: 800;
@@ -237,7 +237,7 @@
   position: absolute;
   top: 12px;
   left: 12px;
-  background-color: #f5a623;
+  background-color: #e6ad00;
   color: #111111;
   font-size: 11px;
   font-weight: 800;
@@ -269,7 +269,7 @@
 
 .mc-orders-count {
   font-size: 12px;
-  color: #f5a623;
+  color: #e6ad00;
   margin-bottom: 12px;
   display: flex;
   align-items: center;
@@ -288,7 +288,7 @@
 .mc-price-current {
   font-size: 22px;
   font-weight: 900;
-  color: #f5a623;
+  color: #e6ad00;
 }
 
 .mc-price-compare {
@@ -298,7 +298,7 @@
 }
 
 .mc-btn {
-  background-color: #f5a623;
+  background-color: #e6ad00;
   color: #111111;
   font-size: 14px;
   font-weight: 800;

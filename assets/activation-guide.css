@@ -59,7 +59,7 @@
 
 .ag-card:hover {
   transform: translateY(-4px);
-  border-color: #f5a623;
+  border-color: #e6ad00;
   background-color: rgba(45, 45, 45, 0.9);
   box-shadow: 0 0 18px rgba(245, 166, 35, 0.3);
 }
@@ -67,7 +67,7 @@
 .ag-icon {
   width: 32px;
   height: 32px;
-  color: #f5a623;
+  color: #e6ad00;
   display: flex;
   align-items: center;
   justify-content: center;

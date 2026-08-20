@@ -24,7 +24,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: #f5a623;
+  background-color: #e6ad00;
   color: #111111;
   display: flex;
   align-items: center;
@@ -78,7 +78,7 @@
 }
 
 .bundle-badge {
-  color: #f5a623;
+  color: #e6ad00;
   font-size: 13px;
   font-weight: 700;
   display: flex;
@@ -156,7 +156,7 @@
 }
 
 .bundle-features svg {
-  color: #f5a623;
+  color: #e6ad00;
   flex-shrink: 0;
 }
 
@@ -175,7 +175,7 @@
 .bundle-price-current {
   font-size: 32px;
   font-weight: 900;
-  color: #f5a623;
+  color: #e6ad00;
 }
 
 .bundle-price-compare {
@@ -200,7 +200,7 @@
 
 /* زر الشراء */
 .bundle-btn {
-  background-color: #f5a623;
+  background-color: #e6ad00;
   color: #111111;
   font-size: 16px;
   font-weight: 800;

@@ -47,7 +47,7 @@
 
 .contact-tg-card:hover {
   transform: translateY(-2px);
-  border-color: #f5a623;
+  border-color: #e6ad00;
   box-shadow: 0 0 20px rgba(245, 166, 35, 0.25);
 }
 
@@ -150,7 +150,7 @@
 
 .contact-input:focus,
 .contact-textarea:focus {
-  border-color: #f5a623;
+  border-color: #e6ad00;
   box-shadow: 0 0 10px rgba(245, 166, 35, 0.2);
 }
 
@@ -175,9 +175,9 @@
 }
 
 .contact-submit-btn:hover {
-  background-color: #f5a623;
+  background-color: #e6ad00;
   color: #111111;
-  border-color: #f5a623;
+  border-color: #e6ad00;
   box-shadow: 0 4px 15px rgba(245, 166, 35, 0.3);
 }
 

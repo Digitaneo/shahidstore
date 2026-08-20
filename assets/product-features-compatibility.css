@@ -67,7 +67,7 @@
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  border: 1px solid #f5a623;
+  border: 1px solid #e6ad00;
   background-color: rgba(245, 166, 35, 0.1);
   box-sizing: border-box;
 }
@@ -98,8 +98,8 @@
 }
 
 .pfc-device-pill:hover {
-  border-color: #f5a623;
-  color: #f5a623;
+  border-color: #e6ad00;
+  color: #e6ad00;
   background-color: rgba(245, 166, 35, 0.08);
   transform: translateY(-2px);
 }
