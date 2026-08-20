@@ -242,7 +242,7 @@
 
 @media (max-width: 480px) {
   .cart-form {
-    padding: 1rem;
+    padding: 15px;
   }
   .cart-item {
     grid-template-columns: 1fr;
