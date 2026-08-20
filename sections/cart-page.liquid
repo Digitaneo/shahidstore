@@ -17,6 +17,7 @@ Add this section to the cart.liquid template with `{% section 'cart-page' %}`.
     <p>لا توجد منتجات في سلة التسوق.</p>
     <a href="/" class="btn-primary">العودة إلى المتجر</a>
   </div>
+
 {% else %}
   <form action="/cart" method="post" novalidate class="cart-form">
     <table class="cart-table">
@@ -46,9 +47,10 @@ Add this section to the cart.liquid template with `{% section 'cart-page' %}`.
             </td>
             <td class="cart-quantity">
               <input type="number"
-                     name="updates[{{ item.key }}]"
+                     name="updates[]"
                      value="{{ item.quantity }}"
                      min="0"
+                     id="updates_{{ item.key }}"
                      class="quantity-input" />
             </td>
             <td class="cart-price">
@@ -58,9 +60,9 @@ Add this section to the cart.liquid template with `{% section 'cart-page' %}`.
               {{ item.line_price | money }}
             </td>
             <td class="cart-remove">
-              <button type="submit" name="updates[{{ item.key }}]" value="0" class="remove-btn" aria-label="حذف المنتج">
+              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="remove-btn" aria-label="حذف المنتج">
                 ×
-              </button>
+              </a>
             </td>
           </tr>
         {% endfor %}
@@ -73,7 +75,8 @@ Add this section to the cart.liquid template with `{% section 'cart-page' %}`.
       </div>
       <div class="cart-actions">
         <a href="/" class="btn-secondary">الاستمرار في التسوق</a>
-        <button type="submit" class="btn-primary">متابعة الدفع</button>
+        <button type="submit" name="update" class="btn-secondary">تحديث السلة</button>
+        <button type="submit" formaction="/checkout" class="btn-primary">متابعة الدفع</button>
       </div>
     </div>
   </form>
