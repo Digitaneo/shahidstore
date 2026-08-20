@@ -179,7 +179,7 @@
     {{ 'shahidstore-header.css' | asset_url | stylesheet_tag }}
     {{ 'theme.css' | asset_url | stylesheet_tag }}
 {{ 'cart.css' | asset_url | stylesheet_tag }}
-{% if template == 'collection' %}
+{% if template contains 'collection' or template contains 'list-collections' or request.page_type contains 'collection' %}
     {{ 'collections.css' | asset_url | stylesheet_tag }}
 {% endif %}
 

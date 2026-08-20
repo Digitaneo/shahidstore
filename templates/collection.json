@@ -10,7 +10,7 @@
 {
   "sections": {
     "main": {
-      "type": "list-collections",
+      "type": "main-collection",
       "settings": {}
     }
   },

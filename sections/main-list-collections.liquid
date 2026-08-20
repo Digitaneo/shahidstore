@@ -1,0 +1,81 @@
+{{ 'collections.css' | asset_url | stylesheet_tag }}
+
+<section class="mlc-section">
+  <div class="mlc-container">
+    {% if section.settings.title != blank %}
+      <div class="mlc-header">
+        <h1 class="mlc-title">{{ section.settings.title }}</h1>
+        {% if section.settings.subtitle != blank %}
+          <p class="mlc-subtitle">{{ section.settings.subtitle }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="mlc-grid">
+      {% for col in collections %}
+        {% unless col.handle == 'frontpage' %}
+          <a href="{{ col.url }}" class="mlc-card">
+            <div class="mlc-image-box">
+              <span class="mlc-badge">{{ col.all_products_count }} منتج</span>
+              {% if col.image != blank %}
+                <img src="{{ col.image | image_url: width: 600 }}" alt="{{ col.title | escape }}" loading="lazy">
+              {% elsif col.products.first.featured_image != blank %}
+                <img src="{{ col.products.first.featured_image | image_url: width: 600 }}" alt="{{ col.title | escape }}" loading="lazy">
+              {% else %}
+                {{ 'collection-1' | placeholder_svg_tag }}
+              {% endif %}
+            </div>
+
+            <div class="mlc-body">
+              <h2 class="mlc-card-title">{{ col.title }}</h2>
+              {% if col.description != blank %}
+                <p class="mlc-card-desc">{{ col.description | strip_html | truncate: 90 }}</p>
+              {% endif %}
+              <span class="mlc-btn">
+                {{ section.settings.button_text | default: 'تصفح الباقات' }}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        {% endunless %}
+      {% else %}
+        <p class="mlc-empty">لا توجد تصنيفات مضافة حالياً.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "عرض جميع التصنيفات",
+  "tag": "section",
+  "class": "section-main-list-collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "عنوان الصفحة",
+      "default": "جميع تصنيفات المتجر"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "وصف فرعي",
+      "default": "اختر التصنيف المناسب واستعرض أفضل الباقات والاشتراكات"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "نص الزر",
+      "default": "تصفح الباقات"
+    }
+  ],
+  "presets": [
+    {
+      "name": "عرض جميع التصنيفات"
+    }
+  ]
+}
+{% endschema %}

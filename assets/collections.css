@@ -1,35 +1,214 @@
-/* Collections page styling */
-.mc-collections-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem 0;
+/* ------------------------------------------------------------
+ * ShahidStore - Collections List Page Styles (/collections)
+ * ------------------------------------------------------------ */
+
+.mlc-section {
+  direction: rtl;
+  background-color: #1a1a16;
+  padding: 50px 20px 90px;
+  color: #ffffff;
+  font-family: inherit;
+  min-height: 80vh;
 }
 
-.mc-collection-card {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.mlc-container {
+  max-width: 1350px;
+  margin: 0 auto;
+}
+
+/* Header */
+.mlc-header {
   text-align: center;
+  margin-bottom: 45px;
 }
-.mc-collection-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+
+.mlc-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 10px;
+  position: relative;
+  display: inline-block;
 }
-.mc-collection-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-.mc-collection-card h3 {
-  font-size: 1.2rem;
-  margin: 0.8rem 0;
-  color: #222;
-}
-.mc-collection-card a {
-  text-decoration: none;
-  color: inherit;
+
+.mlc-title::after {
+  content: "";
   display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #e6ad00;
+  border-radius: 2px;
+  margin: 10px auto 0;
+}
+
+.mlc-subtitle {
+  font-size: 15px;
+  color: #a0a0a0;
+  margin: 8px 0 0;
+}
+
+/* Grid */
+.mlc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* Collection Card */
+.mlc-card {
+  background-color: #242424;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mlc-card:hover {
+  transform: translateY(-8px);
+  border-color: #e6ad00;
+  box-shadow: 0 8px 30px rgba(230, 173, 0, 0.25);
+}
+
+.mlc-image-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: #111111;
+}
+
+.mlc-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.mlc-card:hover .mlc-image-box img {
+  transform: scale(1.05);
+}
+
+.mlc-image-box::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.mlc-card:hover .mlc-image-box::after {
+  opacity: 1;
+  left: 130%;
+  transition: left 0.75s ease-in-out;
+}
+
+.mlc-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-color: #e6ad00;
+  color: #111111;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 5px 14px;
+  border-radius: 20px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Card Body */
+.mlc-body {
+  padding: 22px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.mlc-card-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 10px;
+}
+
+.mlc-card-desc {
+  font-size: 13px;
+  color: #a0a0a0;
+  line-height: 1.6;
+  margin: 0 0 20px;
+  flex-grow: 1;
+}
+
+/* Button */
+.mlc-btn {
+  background-color: #e6ad00;
+  color: #111111;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 12px 18px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mlc-card:hover .mlc-btn {
+  background-color: #ffb834;
+}
+
+.mlc-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.mlc-card:hover .mlc-btn svg {
+  transform: translateX(-4px);
+}
+
+.mlc-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #a0a0a0;
+  font-size: 16px;
+  padding: 60px 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .mlc-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .mlc-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .mlc-title {
+    font-size: 24px;
+  }
+  .mlc-section {
+    padding: 30px 15px 60px;
+  }
 }
