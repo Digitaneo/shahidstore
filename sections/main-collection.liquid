@@ -74,6 +74,13 @@
 
       <!-- شبكة عرض المنتجات -->
       <main class="mc-main-content">
+        <div class="mc-header-box">
+          <h1 class="mc-collection-heading">{{ collection.title | default: 'جميع المنتجات' }}</h1>
+          {% if collection.description != blank %}
+            <div class="mc-collection-description">{{ collection.description }}</div>
+          {% endif %}
+        </div>
+
         <div class="mc-grid" id="ProductGridContainer">
           {% for product in collection.products %}
             {% assign badge_val = product.metafields.custom['Product-badge'].value | default: product.metafields.custom['Product-badge'] %}

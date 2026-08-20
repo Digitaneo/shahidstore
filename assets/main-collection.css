@@ -146,6 +146,28 @@
   flex-direction: column;
 }
 
+.mc-header-box {
+  margin-bottom: 24px;
+  text-align: right;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(245, 166, 35, 0.2);
+}
+
+.mc-collection-heading {
+  font-size: 28px;
+  font-weight: 800;
+  color: #e6ad00;
+  margin: 0 0 8px;
+  line-height: 1.3;
+}
+
+.mc-collection-description {
+  font-size: 14px;
+  color: #a0a0a0;
+  line-height: 1.6;
+  margin: 0;
+}
+
 .mc-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
