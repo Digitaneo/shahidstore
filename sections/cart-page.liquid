@@ -36,7 +36,7 @@ Add this section to the cart.liquid template with `{% section 'cart-page' %}`.
           <tr class="cart-item" data-line="{{ forloop.index }}">
             <td class="cart-thumb">
               <a href="{{ item.url }}">
-                {{ item.image | img_url: 'thumb' | image_tag: item.title }}
+                <img src="{{ item.image | img_url: 'thumb' }}" alt="{{ item.title }}" class="cart-thumb-img"/>
               </a>
             </td>
             <td class="cart-product">
@@ -61,8 +61,10 @@ Add this section to the cart.liquid template with `{% section 'cart-page' %}`.
             </td>
             <td class="cart-remove">
               <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="remove-btn" aria-label="حذف المنتج">
-                ×
-              </a>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+    <path d="M3 6h18v2H3V6zm2 4h14v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V10zm4 2v8h2v-8H9zm4 0v8h2v-8h-2z"/>
+  </svg>
+</a>
             </td>
           </tr>
         {% endfor %}
