@@ -81,7 +81,7 @@
         <!-- نموذج الشراء -->
         {% form 'product', product %}
           <input type="hidden" name="id" value="{{ current_variant.id }}">
-          <a href="/pages/donation" class="pdp-submit-btn" {% unless current_variant.available %}aria-disabled="true"{% endunless %}>
+          <button type="submit" name="checkout" class="pdp-submit-btn" formaction="/checkout" {% unless current_variant.available %}disabled{% endunless %}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
               <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -94,7 +94,7 @@
                 نفدت الكمية
               {% endif %}
             </span>
-          </a>
+          </button>
         {% endform %}
 
         <!-- مميزات المنتج السريعة -->
