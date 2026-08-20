@@ -1,0 +1,35 @@
+/* Collections page styling */
+.mc-collections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+.mc-collection-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+}
+.mc-collection-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+.mc-collection-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.mc-collection-card h3 {
+  font-size: 1.2rem;
+  margin: 0.8rem 0;
+  color: #222;
+}
+.mc-collection-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}

@@ -1,0 +1,24 @@
+{% comment %}
+  Section: List all collections (categories) for the /collections page.
+  This section renders each collection as a card with image, title, and link.
+{% endcomment %}
+{{ 'collections.css' | asset_url | stylesheet_tag }}
+<section class="mc-section">
+  <div class="mc-container">
+    <h1 class="mc-page-title">التصنيفات</h1>
+    <div class="mc-collections-grid">
+      {% for col in collections %}
+        {% unless col.handle == 'frontpage' %}
+          <a href="{{ col.url }}" class="mc-collection-card">
+            {% if col.image != blank %}
+              <img src="{{ col.image | img_url: '600x600' }}" alt="{{ col.title | escape }}" loading="lazy" />
+            {% else %}
+              {{ 'placeholder.svg' | placeholder_svg_tag }}
+            {% endif %}
+            <h3>{{ col.title }}</h3>
+          </a>
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
