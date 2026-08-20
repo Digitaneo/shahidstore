@@ -182,8 +182,8 @@
 }
 
 .shahidstore-slideshow-dot.is-active {
-    background-color: var(--shahidstore-gold, #e0ac00);
-    border-color: var(--shahidstore-gold, #e0ac00);
+    background-color: var(--shahidstore-gold, #e6ad00);
+    border-color: var(--shahidstore-gold, #e6ad00);
     transform: scale(1.2);
 }
 

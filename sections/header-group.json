@@ -56,7 +56,7 @@
       "name": "Header",
       "settings": {
         "shahidstore_logo": "shopify://shop_images/logo.webp",
-        "primary_color": "#e0ac00",
+        "primary_color": "#e6ad00",
         "pages_menu": "main-menu"
       }
     }
