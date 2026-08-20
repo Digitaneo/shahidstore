@@ -1,0 +1,80 @@
+{% comment %}
+Cart Page Section – provides full cart management (list items, update quantity, remove, subtotal, checkout button).
+Add this section to the cart.liquid template with `{% section 'cart-page' %}`.
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "Cart Page",
+  "settings": [],
+  "presets": [{"name": "Cart"}]
+}
+{% endschema %}
+
+{% if cart.item_count == 0 %}
+  <div class="cart-empty">
+    <h2>سلة التسوق فارغة</h2>
+    <p>لا توجد منتجات في سلة التسوق.</p>
+    <a href="/" class="btn-primary">العودة إلى المتجر</a>
+  </div>
+{% else %}
+  <form action="/cart" method="post" novalidate class="cart-form">
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th class="cart-thumb">الصورة</th>
+          <th class="cart-product">المنتج</th>
+          <th class="cart-quantity">الكمية</th>
+          <th class="cart-price">السعر</th>
+          <th class="cart-total">الإجمالي</th>
+          <th class="cart-remove">حذف</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart.items %}
+          <tr class="cart-item" data-line="{{ forloop.index }}">
+            <td class="cart-thumb">
+              <a href="{{ item.url }}">
+                {{ item.image | img_url: 'thumb' | image_tag: item.title }}
+              </a>
+            </td>
+            <td class="cart-product">
+              <a href="{{ item.url }}" class="cart-product-title">{{ item.product.title }}</a>
+              {% if item.variant.title != 'Default Title' %}
+                <p class="cart-variant">{{ item.variant.title }}</p>
+              {% endif %}
+            </td>
+            <td class="cart-quantity">
+              <input type="number"
+                     name="updates[{{ item.key }}]"
+                     value="{{ item.quantity }}"
+                     min="0"
+                     class="quantity-input" />
+            </td>
+            <td class="cart-price">
+              {{ item.price | money }}
+            </td>
+            <td class="cart-total">
+              {{ item.line_price | money }}
+            </td>
+            <td class="cart-remove">
+              <button type="submit" name="updates[{{ item.key }}]" value="0" class="remove-btn" aria-label="حذف المنتج">
+                ×
+              </button>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="cart-footer">
+      <div class="cart-subtotal">
+        <strong>الإجمالي الفرعي:</strong> {{ cart.total_price | money }}
+      </div>
+      <div class="cart-actions">
+        <a href="/" class="btn-secondary">الاستمرار في التسوق</a>
+        <button type="submit" class="btn-primary">متابعة الدفع</button>
+      </div>
+    </div>
+  </form>
+{% endif %}
